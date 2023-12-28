@@ -276,18 +276,7 @@ class UserSelfCarPostView extends StatelessWidget {
                                   padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 8.0, 8.0),
                                   child: PlacarsButtonWidget(
                                     onPressed: () {
-                                      viewModel.navigateToChatScreen(cars);
-                                      // try {
-                                      //   if ((viewModel.userHiveModel?.email?.isNotEmpty ?? false) &&
-                                      //       (viewModel.userHiveModel?.profileImgUrl?.isNotEmpty ?? false)) {
-                                      //     await viewModel.addRecentlyMessaged(cars);
-                                      //   } else {
-                                      //     viewModel.showSnackS();
-                                      //   }
-                                      // } catch (e) {
-                                      //   inspect(e);
-                                      //   viewModel.showSnackS();
-                                      // }
+                                      // viewModel.navigateToChatScreen(cars);
                                     },
                                     text: 'Mesaj At',
                                     options: FindJobButtonOptions(

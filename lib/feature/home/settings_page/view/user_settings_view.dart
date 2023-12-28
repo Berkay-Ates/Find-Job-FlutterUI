@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import '../../../../core/base/view/base_view.dart';
 import '../../../../core/components/exit_widget.dart';
-import '../../../../core/extension/easy_localization_translate/easy_localization_translate.dart';
-import '../../../../core/init/lang/locale_keys.g.dart';
 import '../view_model/user_settings_view_model.dart';
 
 import '../../../../core/init/theme/itheme/iTheme.dart';
@@ -30,7 +28,7 @@ class UserSettingsView extends StatelessWidget {
                 backgroundColor: ITheme.of(context).primaryBackground,
                 automaticallyImplyLeading: false,
                 title: Text(
-                  LocaleKeys.settings_account.translate,
+                  "Kullanıcı Hesabı",
                   style: ITheme.of(context).headlineMedium,
                 ),
                 actions: const [],
@@ -115,7 +113,7 @@ class UserSettingsView extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 0.0),
                         child: Text(
-                          LocaleKeys.settings_account.translate,
+                          "Hesabım",
                           style: ITheme.of(context).headlineMedium.copyWith(fontSize: 14),
                         ),
                       ),
@@ -153,7 +151,7 @@ class UserSettingsView extends StatelessWidget {
                                   Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
                                     child: Text(
-                                      LocaleKeys.settings_prefers.translate,
+                                      "Tercihlerimi Yönet",
                                       style: ITheme.of(context).bodySmall,
                                     ),
                                   ),
@@ -205,7 +203,7 @@ class UserSettingsView extends StatelessWidget {
                                   Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
                                     child: Text(
-                                      LocaleKeys.settings_notifications.translate,
+                                      "Bildirim Ayarları",
                                       style: ITheme.of(context).bodySmall,
                                     ),
                                   ),
@@ -259,7 +257,7 @@ class UserSettingsView extends StatelessWidget {
                                   Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
                                     child: Text(
-                                      LocaleKeys.settings_profile.translate,
+                                      "Profilimi Yönet",
                                       style: ITheme.of(context).bodySmall,
                                     ),
                                   ),
@@ -282,7 +280,7 @@ class UserSettingsView extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 0.0, 0.0),
                         child: Text(
-                          LocaleKeys.settings_general.translate,
+                          "Genel",
                           style: ITheme.of(context).headlineMedium.copyWith(fontSize: 14),
                         ),
                       ),
@@ -370,7 +368,7 @@ class UserSettingsView extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
                                   child: Text(
-                                    LocaleKeys.settings_support.translate,
+                                    "Teknik Destek",
                                     style: ITheme.of(context).bodySmall,
                                   ),
                                 ),
@@ -419,7 +417,7 @@ class UserSettingsView extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
                                   child: Text(
-                                    LocaleKeys.settings_issue.translate,
+                                    "Problem Rapor Et",
                                     style: ITheme.of(context).bodySmall,
                                   ),
                                 ),
@@ -489,7 +487,7 @@ class UserSettingsView extends StatelessWidget {
                                   Padding(
                                     padding: const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
                                     child: Text(
-                                      LocaleKeys.settings_exit.translate,
+                                      "Çıkış Yap",
                                       style: ITheme.of(context).bodySmall.copyWith(
                                             fontFamily: 'Lexend',
                                             color: const Color(0xFFB91F25),

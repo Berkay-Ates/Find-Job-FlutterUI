@@ -4,8 +4,6 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import '../../../../../core/base/view/base_view.dart';
 import '../../../../../core/components/find_job_button_widget.dart';
 import '../../../../../core/components/find_job_icon_button.dart';
-import '../../../../../core/extension/easy_localization_translate/easy_localization_translate.dart';
-import '../../../../../core/init/lang/locale_keys.g.dart';
 import '../../../../../core/init/theme/itheme/iTheme.dart';
 import '../view_model/notifications_view_model.dart';
 
@@ -41,7 +39,7 @@ class NotificationsSettingView extends StatelessWidget {
                 },
               ),
               title: Text(
-                LocaleKeys.notifications_settings_prefers.translate,
+                "Bildirim Ayarları",
                 style: ITheme.of(context).headlineMedium,
               ),
               actions: const [],
@@ -60,11 +58,11 @@ class NotificationsSettingView extends StatelessWidget {
                         viewModel.changeNotificationsRejYes(newValue);
                       },
                       title: Text(
-                        LocaleKeys.notifications_settings_notifications_prefer.translate,
+                        "Bildirim Ayarları",
                         style: ITheme.of(context).headlineSmall,
                       ),
                       subtitle: Text(
-                        LocaleKeys.notifications_settings_explain_text.translate,
+                        "Neler olup bittiğinden haberdar olmak istiyorsan, bildirimleri aç",
                         style: ITheme.of(context).bodySmall,
                       ),
                       activeColor: ITheme.of(context).primary,
@@ -83,7 +81,7 @@ class NotificationsSettingView extends StatelessWidget {
                             : () async {
                                 viewModel.saveNotificationsSettings();
                               },
-                        text: LocaleKeys.notifications_settings_save.translate,
+                        text: "Kaydet",
                         options: FindJobButtonOptions(
                           width: 170.0,
                           height: 40.0,

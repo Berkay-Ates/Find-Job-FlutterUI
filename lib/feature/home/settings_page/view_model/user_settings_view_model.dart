@@ -13,7 +13,6 @@ import '../../../../core/init/theme/theme_provider/theme_provider.dart';
 import '../../../../product/hive_models/user_hive_model.dart';
 import '../../../auth/sign_in_page/view/sign_in_view.dart';
 import '../notifications_settings/view/notifications_view.dart';
-import '../profile_settings/view/profile_settings_view.dart';
 
 part 'user_settings_view_model.g.dart';
 
@@ -62,10 +61,6 @@ abstract class _UserSettingsViewModelBase with Store, BaseViewModel {
 
   void navigateToNotifSet() {
     Navigator.push(baseContext, MaterialPageRoute(builder: (context) => const NotificationsSettingView()));
-  }
-
-  void navigateToProfileSettings() {
-    Navigator.push(baseContext, MaterialPageRoute(builder: (context) => const ProfileSettingsView()));
   }
 
   void navigateToSignInPage() {

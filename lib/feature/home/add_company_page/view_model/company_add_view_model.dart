@@ -3,9 +3,9 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
+import 'package:placars_savt/feature/home/add_company_page/model/add_company_model.dart';
 
 import '../../../../core/base/view_model/base_view_model.dart';
-import '../../../../core/constants/durations/app_durations.dart';
 import '../../../../core/constants/enums/cache_enum_keys.dart';
 import '../../../../core/extension/easy_localization_translate/easy_localization_translate.dart';
 import '../../../../core/image_upload/image_upload_manager.dart';
@@ -14,20 +14,19 @@ import '../../../../core/init/cache/hive_user_cache_manager/hive_user_cache_mana
 import '../../../../core/init/lang/locale_keys.g.dart';
 import '../../../../product/backend/backend_endpoints.dart';
 import '../../../../product/hive_models/user_hive_model.dart';
-import '../model/add_car_post_model.dart';
 import '../model/image_upload_response.dart';
 
-part 'car_add_view_model.g.dart';
+part 'company_add_view_model.g.dart';
 
-class CarrAddViewModel = _CarrAddViewModelBase with _$CarrAddViewModel;
+class CompanyAddViewModel = _CompanyAddViewModelBase with _$CompanyAddViewModel;
 
-abstract class _CarrAddViewModelBase with Store, BaseViewModel {
+abstract class _CompanyAddViewModelBase with Store, BaseViewModel {
   final formKey = GlobalKey<FormState>();
   final scaffoldKey = GlobalKey<ScaffoldState>();
-  TextEditingController? plakaController;
-  TextEditingController? markaModelController;
-  TextEditingController? kmTextController;
-  TextEditingController? descriptionTextController;
+
+  TextEditingController? companyNameController;
+  TextEditingController? companyLocationController;
+  TextEditingController? companyFieldController;
 
   final imageUploadViewModel = LibraryImageUpload();
 
@@ -35,11 +34,7 @@ abstract class _CarrAddViewModelBase with Store, BaseViewModel {
   bool checkboxValue = false;
 
   @observable
-  String licencePlateUrl =
-      "https://firebasestorage.googleapis.com/v0/b/placars-40f6e.appspot.com/o/download.png?alt=media";
-
-  @observable
-  String carUrl = "https://firebasestorage.googleapis.com/v0/b/placars-40f6e.appspot.com/o/images.png?alt=media";
+  String companyUrl = "https://firebasestorage.googleapis.com/v0/b/placars-40f6e.appspot.com/o/images.png?alt=media";
 
   IHivecacheManager<UserHiveModel>? userHiveCacheManager;
   UserHiveModel? userHiveModel;
@@ -49,10 +44,9 @@ abstract class _CarrAddViewModelBase with Store, BaseViewModel {
 
   @override
   void init() {
-    plakaController ??= TextEditingController();
-    markaModelController ??= TextEditingController();
-    kmTextController ??= TextEditingController();
-    descriptionTextController ??= TextEditingController();
+    companyNameController ??= TextEditingController();
+    companyLocationController ??= TextEditingController();
+    companyFieldController ??= TextEditingController();
     initHive();
   }
 
@@ -64,12 +58,7 @@ abstract class _CarrAddViewModelBase with Store, BaseViewModel {
 
   @action
   void setCarUrl(String imageUrl) {
-    carUrl = imageUrl;
-  }
-
-  @action
-  void setLicenceUrl(String imageUrl) {
-    licencePlateUrl = imageUrl;
+    companyUrl = imageUrl;
   }
 
   Future<String?> uploadImageToFirebase() async {
@@ -114,45 +103,26 @@ abstract class _CarrAddViewModelBase with Store, BaseViewModel {
   }
 
   @action
-  Future addCar() async {
+  Future addCompany() async {
     if (formKey.currentState?.validate() ?? false) {
-      final AddCarPostModel addCarPostModel = AddCarPostModel(
-        plakaController?.text,
-        markaModelController?.text,
-        carUrl,
-        licencePlateUrl,
-        "True",
-        checkboxValue ? "True" : "False",
-        kmTextController?.text,
-        descriptionTextController?.text,
-        0,
-        0,
-      );
-
-      final response = await appService?.dio.post(
-        BackendURLS.CREATE_CAR,
-        data: addCarPostModel.toJson(),
-      );
-
+      CompanyModel company = CompanyModel(companyNameController?.text, companyLocationController?.text, companyUrl,
+          companyFieldController?.text, "Null");
+      final response = await appService?.dio.post(BackendURLS.CREATE_COMPANY, data: company.toJson());
       if (response?.statusCode == HttpStatus.created) {
-        await addRecentlyMessaged(plakaController?.text ?? "", carUrl);
         showSnackS();
-        await Future.delayed(AppDurations.durationLow);
-        navigateToCarAddPage(true);
+        navigateToCompanyPage(true);
       }
     }
   }
 
-  Future<void> addRecentlyMessaged(String plate, String carPhotourl) async {}
-
-  void navigateToCarAddPage(bool val) {
-    Navigator.pop(baseContext, val);
+  void navigateToCompanyPage(bool isAdded) {
+    Navigator.pop(baseContext);
   }
 
   void showSnackS() {
     ScaffoldMessenger.of(baseContext).showSnackBar(SnackBar(
       content: const Text(
-        "Yeni araç ekleme işlemi başarıyla sonuçlanmıştır.",
+        "Yeni şirket ekleme işlemi başarıyla sonuçlanmıştır.",
         textAlign: TextAlign.center,
       ),
       backgroundColor: Theme.of(baseContext).colorScheme.onSurface,
@@ -162,7 +132,7 @@ abstract class _CarrAddViewModelBase with Store, BaseViewModel {
   void showSnackSError() {
     ScaffoldMessenger.of(baseContext).showSnackBar(SnackBar(
       content: const Text(
-        "Yeni araç ekleme işlemi başarılamadı sonra tekrar dene",
+        "Yeni şirket ekleme işlemi başarılamadı sonra tekrar dene",
         textAlign: TextAlign.center,
       ),
       backgroundColor: Theme.of(baseContext).colorScheme.error,
@@ -170,9 +140,8 @@ abstract class _CarrAddViewModelBase with Store, BaseViewModel {
   }
 
   void dispose() {
-    plakaController?.dispose();
-    markaModelController?.dispose();
-    kmTextController?.dispose();
-    descriptionTextController?.dispose();
+    companyNameController?.dispose();
+    companyLocationController?.dispose();
+    companyFieldController?.dispose();
   }
 }

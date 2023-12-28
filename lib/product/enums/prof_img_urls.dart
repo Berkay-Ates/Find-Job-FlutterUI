@@ -11,7 +11,8 @@ enum DefaultProfileImageEnums {
   img8,
   img9;
 
-  String get imagePath => "https://firebasestorage.googleapis.com/v0/b/placars-40f6e.appspot.com/o/$name.jpg?alt=media";
+  String get imagePath =>
+      "https://firebasestorage.googleapis.com/v0/b/findjob-5468d.appspot.com/o/$name.jpeg?alt=media";
   String get randomImage {
     int random = Random().nextInt(values.length);
     String image = "";

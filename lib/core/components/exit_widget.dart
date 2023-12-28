@@ -1,8 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
-import '../extension/easy_localization_translate/easy_localization_translate.dart';
-import '../init/lang/locale_keys.g.dart';
 import '../init/theme/itheme/iTheme.dart';
 import 'find_job_button_widget.dart';
 
@@ -44,7 +42,7 @@ class ExitWidget extends StatelessWidget {
               padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
               child: PlacarsButtonWidget(
                 onPressed: () => logout(),
-                text: LocaleKeys.exit_widget_exit.translate,
+                text: "Çıkış Yap",
                 options: FindJobButtonOptions(
                   width: 150.0,
                   height: 50.0,
@@ -71,7 +69,7 @@ class ExitWidget extends StatelessWidget {
                 onPressed: () async {
                   Navigator.pop(context);
                 },
-                text: LocaleKeys.exit_widget_dispose.translate,
+                text: "Vazgeç",
                 options: FindJobButtonOptions(
                   width: 150.0,
                   height: 50.0,

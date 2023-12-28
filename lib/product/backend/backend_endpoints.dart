@@ -26,7 +26,7 @@ class BackendURLS {
   static const String GET_COMPANY_JOBS = '$BASE_URL/getCompanyJobs/';
   static const String GET_ALL_JOB_APPLICATIONS = '$BASE_URL/getAllJobApplications/';
 
-  static const String IMAGE_UPLOAD = "https://firebasestorage.googleapis.com/v0/b/placars-40f6e.appspot.com/o/";
+  static const String IMAGE_UPLOAD = "https://firebasestorage.googleapis.com/v0/b/findjob-5468d.appspot.com/o/";
 
   static const String CREATE_CAR = "https://placars-q4i4.onrender.com/AccountManagement/newCar/";
   static const String CAR_LISTS = "https://placars-q4i4.onrender.com/AccountManagement/ListmyCars/";

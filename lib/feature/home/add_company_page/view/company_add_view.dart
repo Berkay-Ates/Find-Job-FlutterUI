@@ -1,19 +1,20 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:placars_savt/core/components/find_job_icon_button.dart';
-import 'package:placars_savt/feature/home/add_job_page/view_model/job_add_view_model.dart';
+import '../view_model/company_add_view_model.dart';
 
 import '../../../../core/base/view/base_view.dart';
 import '../../../../core/components/find_job_button_widget.dart';
 import '../../../../core/init/theme/itheme/iTheme.dart';
 
-class JobAddView extends StatelessWidget {
-  const JobAddView({super.key});
+class CompanyAddView extends StatelessWidget {
+  const CompanyAddView({super.key});
   @override
   Widget build(BuildContext context) {
-    return BaseView<JobAddViewModel>(
-      viewModel: JobAddViewModel(),
+    return BaseView<CompanyAddViewModel>(
+      viewModel: CompanyAddViewModel(),
       onModelReady: (viewModel) {
         viewModel.setContext(context);
         viewModel.init();
@@ -40,7 +41,7 @@ class JobAddView extends StatelessWidget {
               },
             ),
             title: Text(
-              "İş İlanı Ekle",
+              "Sirket Ekle",
               style: ITheme.of(context).headlineMedium,
             ),
             actions: const [],
@@ -64,59 +65,12 @@ class JobAddView extends StatelessWidget {
                           padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                           child: TextFormField(
                             textInputAction: TextInputAction.next,
-                            controller: viewModel.jobTitleController,
-                            obscureText: false,
-                            decoration: InputDecoration(
-                              labelText: "İş İlanı Başlığı",
-                              labelStyle: ITheme.of(context).bodySmall,
-                              hintText: "Oluşturulacak ilanın başlığını giriniz",
-                              hintStyle: ITheme.of(context).bodySmall,
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(
-                                  color: Color(0x00000000),
-                                  width: 1.0,
-                                ),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(
-                                  color: Color(0x00000000),
-                                  width: 1.0,
-                                ),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              errorBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(
-                                  color: Color(0x00000000),
-                                  width: 1.0,
-                                ),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              focusedErrorBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(
-                                  color: Color(0x00000000),
-                                  width: 1.0,
-                                ),
-                                borderRadius: BorderRadius.circular(8.0),
-                              ),
-                              filled: true,
-                              fillColor: ITheme.of(context).secondaryBackground,
-                              contentPadding: const EdgeInsetsDirectional.fromSTEB(20.0, 24.0, 20.0, 24.0),
-                            ),
-                            style: ITheme.of(context).bodyMedium,
-                            validator: viewModel.textFieldsValidator,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
-                          child: TextFormField(
-                            textInputAction: TextInputAction.next,
                             controller: viewModel.companyNameController,
                             obscureText: false,
                             decoration: InputDecoration(
-                              labelText: "Sirket İsmi Giriniz",
+                              labelText: "Şirket İsmi",
                               labelStyle: ITheme.of(context).bodySmall,
-                              hintText: "Var olan bir Şirket Girmelisiniz",
+                              hintText: "Oluşturulacak şirketin ismini giriniz",
                               hintStyle: ITheme.of(context).bodySmall,
                               enabledBorder: OutlineInputBorder(
                                 borderSide: const BorderSide(
@@ -158,12 +112,12 @@ class JobAddView extends StatelessWidget {
                           padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                           child: TextFormField(
                             textInputAction: TextInputAction.next,
-                            controller: viewModel.salaryController,
+                            controller: viewModel.companyLocationController,
                             obscureText: false,
                             decoration: InputDecoration(
-                              labelText: "Maaş Bilgisi",
+                              labelText: "Şirket Konumu",
                               labelStyle: ITheme.of(context).bodySmall,
-                              hintText: "Maaş Bilgisini Giriniz",
+                              hintText: "Şirketin Konumunu giriniz",
                               hintStyle: ITheme.of(context).bodySmall,
                               enabledBorder: OutlineInputBorder(
                                 borderSide: const BorderSide(
@@ -198,7 +152,6 @@ class JobAddView extends StatelessWidget {
                               contentPadding: const EdgeInsetsDirectional.fromSTEB(20.0, 24.0, 20.0, 24.0),
                             ),
                             style: ITheme.of(context).bodyMedium,
-                            keyboardType: TextInputType.number,
                             validator: viewModel.textFieldsValidator,
                           ),
                         ),
@@ -206,12 +159,12 @@ class JobAddView extends StatelessWidget {
                           padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
                           child: TextFormField(
                             textInputAction: TextInputAction.next,
-                            controller: viewModel.jobDescriptionController,
+                            controller: viewModel.companyFieldController,
                             obscureText: false,
                             decoration: InputDecoration(
-                              labelText: "İş Açıklaması giriniz",
+                              labelText: "Şirket Alanı",
                               labelStyle: ITheme.of(context).bodySmall,
-                              hintText: "İş hakkında açıklama yapınız",
+                              hintText: "Örn: Teknoloji,Gıda,Tarım",
                               hintStyle: ITheme.of(context).bodySmall,
                               enabledBorder: OutlineInputBorder(
                                 borderSide: const BorderSide(
@@ -245,24 +198,90 @@ class JobAddView extends StatelessWidget {
                               fillColor: ITheme.of(context).secondaryBackground,
                               contentPadding: const EdgeInsetsDirectional.fromSTEB(20.0, 24.0, 20.0, 24.0),
                             ),
-                            maxLines: 5,
                             style: ITheme.of(context).bodyMedium,
-                            keyboardType: TextInputType.text,
                             validator: viewModel.textFieldsValidator,
                           ),
+                        ),
+                        Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 10.0),
+                              child: Text(
+                                "Sirket Logosu",
+                                style: ITheme.of(context).bodyMedium.copyWith(
+                                      fontFamily: 'Lexend',
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
+                            ),
+                            Container(
+                              width: double.infinity,
+                              height: 240.0,
+                              decoration: BoxDecoration(
+                                color: ITheme.of(context).secondaryBackground,
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              child: InkWell(
+                                onTap: () async {
+                                  // aracFotoYukle
+                                },
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Container(
+                                      width: 60.0,
+                                      height: 60.0,
+                                      decoration: BoxDecoration(
+                                        color: ITheme.of(context).primaryBackground,
+                                        borderRadius: BorderRadius.circular(10.0),
+                                      ),
+                                      child: FindJobIconButton(
+                                        borderColor: Colors.transparent,
+                                        borderRadius: 0.0,
+                                        borderWidth: 0.0,
+                                        buttonSize: 60.0,
+                                        icon: Icon(
+                                          Icons.add,
+                                          color: ITheme.of(context).primaryText,
+                                          size: 30.0,
+                                        ),
+                                        onPressed: () async {
+                                          final url = await viewModel.uploadImageToFirebase();
+                                          viewModel.setCarUrl(url ?? "");
+                                        },
+                                      ),
+                                    ),
+                                    Text(
+                                      "Şirket için logo seçin",
+                                      textAlign: TextAlign.center,
+                                      style: ITheme.of(context).bodyMedium,
+                                    ),
+                                    Observer(builder: (_) {
+                                      return SizedBox(
+                                        height: 120,
+                                        child: Image.network(viewModel.companyUrl),
+                                      );
+                                    })
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 60.0),
                           child: PlacarsButtonWidget(
                             onPressed: () async {
                               try {
-                                await viewModel.addJob();
+                                await viewModel.addCompany();
                               } catch (e) {
                                 inspect(e);
                                 viewModel.showSnackSError();
                               }
                             },
-                            text: "İlanı Kaydet",
+                            text: "Şirketi Kaydet",
                             options: FindJobButtonOptions(
                               width: 190.0,
                               height: 50.0,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
+import 'package:placars_savt/feature/home/add_company_page/view/company_add_view.dart';
 import 'package:placars_savt/feature/home/add_job_page/view/job_add_view.dart';
-
 import '../../../../core/base/view_model/base_view_model.dart';
 import '../../../../core/constants/enums/cache_enum_keys.dart';
 import '../../../../core/init/cache/hive/hive_model.dart';
@@ -11,11 +11,11 @@ import '../../../../product/hive_models/user_hive_model.dart';
 
 import '../model/message_model.dart';
 
-part 'messages_view_model.g.dart';
+part 'company_view_model.g.dart';
 
-class MessagesViewModel = _MessagesViewModelBase with _$MessagesViewModel;
+class CompanyViewModel = _CompanyViewModelBase with _$CompanyViewModel;
 
-abstract class _MessagesViewModelBase with Store, BaseViewModel {
+abstract class _CompanyViewModelBase with Store, BaseViewModel {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final unfocusNode = FocusNode();
 
@@ -45,7 +45,11 @@ abstract class _MessagesViewModelBase with Store, BaseViewModel {
     userHiveModel = userHiveCacheManager?.getItem(CacheEnumKeys.USERHIVEKEY.name);
   }
 
-  Future<Object> navigateToCompanyAdd() async {
+  Future<bool?> navigateToCompanyAdd() async {
+    return await Navigator.push(baseContext, MaterialPageRoute(builder: (context) => const CompanyAddView()));
+  }
+
+  Future<bool> navigateToJobAdd() async {
     return await Navigator.push(baseContext, MaterialPageRoute(builder: (context) => const JobAddView()));
   }
 

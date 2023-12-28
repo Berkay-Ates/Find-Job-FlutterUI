@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 import 'package:placars_savt/core/base/view/base_view.dart';
-import 'package:placars_savt/feature/home/company_page/view_model/messages_view_model.dart';
+import 'package:placars_savt/feature/home/company_page/view_model/company_view_model.dart';
 
 import '../../../../core/components/find_job_icon_button.dart';
 import '../../../../core/init/theme/itheme/iTheme.dart';
@@ -13,8 +13,8 @@ class CompanyView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BaseView<MessagesViewModel>(
-        viewModel: MessagesViewModel(),
+    return BaseView<CompanyViewModel>(
+        viewModel: CompanyViewModel(),
         onModelReady: ((viewModel) {
           viewModel.setContext(context);
           viewModel.init();
@@ -46,13 +46,25 @@ class CompanyView extends StatelessWidget {
                         size: 30.0,
                       ),
                       onPressed: () async {
-                        final response = await viewModel.navigateToCompanyAdd();
+                        final result = await viewModel.navigateToCompanyAdd();
+                        print(result);
                       },
                     ),
                   ),
                 ],
                 centerTitle: false,
                 elevation: 0.0,
+              ),
+              floatingActionButton: Padding(
+                padding: const EdgeInsets.only(bottom: 64.0),
+                child: FloatingActionButton.extended(
+                  onPressed: () async {
+                    final res = await viewModel.navigateToJobAdd();
+                    print(res);
+                  },
+                  icon: const Icon(Icons.add),
+                  label: const Text("Yeni ilan"),
+                ),
               ),
               body: Column(
                 mainAxisSize: MainAxisSize.max,

@@ -1,4 +1,4 @@
-package com.placars.placars_savt
+package com.berkay.findjob
 
 import io.flutter.embedding.android.FlutterActivity
 

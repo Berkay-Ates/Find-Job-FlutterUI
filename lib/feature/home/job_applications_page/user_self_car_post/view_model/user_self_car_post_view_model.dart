@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
-import 'package:placars_savt/feature/home/company_page/chat_page/view/chat_view.dart';
 
 import '../../../../../core/base/view_model/base_view_model.dart';
 import '../../../../../core/constants/enums/cache_enum_keys.dart';
@@ -54,14 +53,6 @@ abstract class _UserSelfCarPostViewModelBase with Store, BaseViewModel {
   @action
   void scrollToBottom() {
     controller.jumpTo(controller.position.minScrollExtent);
-  }
-
-  void navigateToChatScreen(Cars? cars) {
-    if (cars?.carOwnerEmail != null && (cars?.carOwnerEmail?.isNotEmpty ?? false)) {
-      // ignore: use_build_context_synchronously
-      Navigator.push(
-          baseContext, MaterialPageRoute(builder: ((context) => ChatView(chattingPlate: cars?.carPlate ?? ""))));
-    }
   }
 
   String formatDate(Timestamp timestamp) {

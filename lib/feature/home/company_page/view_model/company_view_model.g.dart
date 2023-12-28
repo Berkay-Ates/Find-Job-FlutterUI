@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'messages_view_model.dart';
+part of 'company_view_model.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -8,9 +8,9 @@ part of 'messages_view_model.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
-mixin _$MessagesViewModel on _MessagesViewModelBase, Store {
+mixin _$CompanyViewModel on _CompanyViewModelBase, Store {
   late final _$recentlyMessgedAtom =
-      Atom(name: '_MessagesViewModelBase.recentlyMessged', context: context);
+      Atom(name: '_CompanyViewModelBase.recentlyMessged', context: context);
 
   @override
   List<RecentlyMessaged> get recentlyMessged {
@@ -26,7 +26,7 @@ mixin _$MessagesViewModel on _MessagesViewModelBase, Store {
   }
 
   late final _$isLoadingAtom =
-      Atom(name: '_MessagesViewModelBase.isLoading', context: context);
+      Atom(name: '_CompanyViewModelBase.isLoading', context: context);
 
   @override
   bool get isLoading {
@@ -41,17 +41,17 @@ mixin _$MessagesViewModel on _MessagesViewModelBase, Store {
     });
   }
 
-  late final _$_MessagesViewModelBaseActionController =
-      ActionController(name: '_MessagesViewModelBase', context: context);
+  late final _$_CompanyViewModelBaseActionController =
+      ActionController(name: '_CompanyViewModelBase', context: context);
 
   @override
   void changeLoading() {
-    final _$actionInfo = _$_MessagesViewModelBaseActionController.startAction(
-        name: '_MessagesViewModelBase.changeLoading');
+    final _$actionInfo = _$_CompanyViewModelBaseActionController.startAction(
+        name: '_CompanyViewModelBase.changeLoading');
     try {
       return super.changeLoading();
     } finally {
-      _$_MessagesViewModelBaseActionController.endAction(_$actionInfo);
+      _$_CompanyViewModelBaseActionController.endAction(_$actionInfo);
     }
   }
 

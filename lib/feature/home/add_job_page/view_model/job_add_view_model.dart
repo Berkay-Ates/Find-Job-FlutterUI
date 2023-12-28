@@ -6,13 +6,10 @@ import 'package:placars_savt/feature/home/add_job_page/model/add_job_post_model.
 import 'package:placars_savt/product/backend/backend_endpoints.dart';
 
 import '../../../../core/base/view_model/base_view_model.dart';
-
 import '../../../../core/constants/enums/cache_enum_keys.dart';
-import '../../../../core/extension/easy_localization_translate/easy_localization_translate.dart';
 import '../../../../core/image_upload/image_upload_manager.dart';
 import '../../../../core/init/cache/hive/hive_model.dart';
 import '../../../../core/init/cache/hive_user_cache_manager/hive_user_cache_manager.dart';
-import '../../../../core/init/lang/locale_keys.g.dart';
 
 import '../../../../product/hive_models/user_hive_model.dart';
 
@@ -64,7 +61,7 @@ abstract class _JobAddViewModelBase with Store, BaseViewModel {
   @action
   String? textFieldsValidator(String? value) {
     if (value == null || value.isEmpty) {
-      return LocaleKeys.add_car_page_warn_txt.translate;
+      return "Locale Keys 88";
     }
     return null;
   }

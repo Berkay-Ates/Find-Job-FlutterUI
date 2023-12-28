@@ -10,10 +10,9 @@ import '../../../../core/init/cache/hive/hive_model.dart';
 import '../../../../core/init/cache/hive_user_cache_manager/hive_user_cache_manager.dart';
 import '../../../../product/backend/backend_endpoints.dart';
 import '../../../../product/hive_models/user_hive_model.dart';
-import '../../home_page/model/car_home_post_model.dart';
-import '../user_self_car_post/view/user_self_car_post.dart';
+import '../../home_page/model/jobs_model.dart';
 
-part 'my_cars_view_model.g.dart';
+part 'my_jobs_view_model.g.dart';
 
 class MyCarsViewModel = _MyCarsViewModelBase with _$MyCarsViewModel;
 
@@ -27,7 +26,7 @@ abstract class _MyCarsViewModelBase with Store, BaseViewModel {
   String carUrl = "https://firebasestorage.googleapis.com/v0/b/placars-40f6e.appspot.com/o/images.png?alt=media";
 
   @observable
-  List<Cars> carLists = [];
+  List<JobResult> jobLists = [];
 
   @observable
   bool isloading = false;
@@ -71,7 +70,7 @@ abstract class _MyCarsViewModelBase with Store, BaseViewModel {
     if (response?.statusCode == HttpStatus.ok) {
       final data = response?.data;
       if (data is Map<String, dynamic>) {
-        carLists = CarListModel.fromJson(data).cars ?? [];
+        jobLists = [];
       }
     }
   }
@@ -83,9 +82,5 @@ abstract class _MyCarsViewModelBase with Store, BaseViewModel {
 
   void popDeleteWidget() {
     Navigator.pop(baseContext);
-  }
-
-  void navigateToUserSelfCarPost(Cars cars) {
-    Navigator.push(baseContext, MaterialPageRoute(builder: (context) => UserSelfCarPostView(cars: cars)));
   }
 }

@@ -1,18 +1,15 @@
-import 'dart:developer';
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
+import 'package:placars_savt/product/backend/backend_endpoints.dart';
 
 import '../../../../core/base/view_model/base_view_model.dart';
 import '../../../../core/constants/enums/cache_enum_keys.dart';
 import '../../../../core/init/cache/hive/hive_model.dart';
 import '../../../../core/init/cache/hive_user_cache_manager/hive_user_cache_manager.dart';
-import '../../../../product/backend/backend_endpoints.dart';
 import '../../../../product/enums/home_post_enums.dart';
 import '../../../../product/hive_models/user_hive_model.dart';
-import '../car_post_detail_page/view/car_post_detail_view.dart';
-import '../model/car_home_post_model.dart';
+
+import '../model/jobs_model.dart';
 
 part 'home_view_model.g.dart';
 
@@ -24,13 +21,13 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
   final unfocusNode = FocusNode();
 
   @observable
-  HomePostEnums selectedPostCatgry = HomePostEnums.interestings;
+  HomePostEnums selectedPostCatgry = HomePostEnums.highPaid;
 
   IHivecacheManager<UserHiveModel>? userHiveCacheManager;
   UserHiveModel? userHiveModel;
 
   @observable
-  List<Cars> carLists = [];
+  List<JobResult>? joblist = [];
 
   @observable
   bool isloading = false;
@@ -46,6 +43,7 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
   @override
   void init() {
     textController ??= TextEditingController();
+    getJobs();
     initHive();
   }
 
@@ -54,17 +52,9 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
   }
 
   Future initHive() async {
-    changeLoading();
     userHiveCacheManager = UserHiveCacheManager(CacheEnumKeys.USERHIVEBOXKEY.name);
     await userHiveCacheManager?.init();
     userHiveModel = userHiveCacheManager?.getItem(CacheEnumKeys.USERHIVEKEY.name);
-    try {
-      await getMyCars();
-      changeLoading();
-    } catch (e) {
-      inspect(e);
-      changeLoading();
-    }
   }
 
   @action
@@ -83,18 +73,29 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
     return "$gun.$ay.$yil";
   }
 
-  @action
-  Future getMyCars() async {
-    final response = await appService?.dio.get(BackendURLS.GET_ALL_CARS_LISTS);
-    if (response?.statusCode == HttpStatus.ok) {
+  Future<void> getJobs() async {
+    changeLoading();
+    try {
+      final response = await appService?.dio.get(BackendURLS.GET_ALL_JOBS);
       final data = response?.data;
+
       if (data is Map<String, dynamic>) {
-        carLists = CarListModel.fromJson(data).cars ?? [];
+        joblist = Jobs.fromJson(data).result;
       }
+      print(response?.data);
+    } catch (e) {
+      showSnackS();
     }
+    changeLoading();
   }
 
-  void navigateToCarPostView(Cars cars) {
-    Navigator.push(baseContext, MaterialPageRoute(builder: (context) => CarPostDetailView(cars: cars)));
+  void showSnackS() {
+    ScaffoldMessenger.of(baseContext).showSnackBar(SnackBar(
+      content: const Text(
+        "Bir hata oluştu tekrar deneyiniz",
+        textAlign: TextAlign.center,
+      ),
+      backgroundColor: Theme.of(baseContext).colorScheme.error,
+    ));
   }
 }

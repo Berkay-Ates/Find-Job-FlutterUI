@@ -25,19 +25,19 @@ mixin _$HomeViewModel on _HomeViewModelBase, Store {
     });
   }
 
-  late final _$carListsAtom =
-      Atom(name: '_HomeViewModelBase.carLists', context: context);
+  late final _$joblistAtom =
+      Atom(name: '_HomeViewModelBase.joblist', context: context);
 
   @override
-  List<Cars> get carLists {
-    _$carListsAtom.reportRead();
-    return super.carLists;
+  List<JobResult>? get joblist {
+    _$joblistAtom.reportRead();
+    return super.joblist;
   }
 
   @override
-  set carLists(List<Cars> value) {
-    _$carListsAtom.reportWrite(value, super.carLists, () {
-      super.carLists = value;
+  set joblist(List<JobResult>? value) {
+    _$joblistAtom.reportWrite(value, super.joblist, () {
+      super.joblist = value;
     });
   }
 
@@ -55,14 +55,6 @@ mixin _$HomeViewModel on _HomeViewModelBase, Store {
     _$isloadingAtom.reportWrite(value, super.isloading, () {
       super.isloading = value;
     });
-  }
-
-  late final _$getMyCarsAsyncAction =
-      AsyncAction('_HomeViewModelBase.getMyCars', context: context);
-
-  @override
-  Future<dynamic> getMyCars() {
-    return _$getMyCarsAsyncAction.run(() => super.getMyCars());
   }
 
   late final _$_HomeViewModelBaseActionController =
@@ -105,7 +97,7 @@ mixin _$HomeViewModel on _HomeViewModelBase, Store {
   String toString() {
     return '''
 selectedPostCatgry: ${selectedPostCatgry},
-carLists: ${carLists},
+joblist: ${joblist},
 isloading: ${isloading}
     ''';
   }

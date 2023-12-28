@@ -3,8 +3,6 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 
 import '../../../../core/base/view/base_view.dart';
 import '../../../../core/components/find_job_button_widget.dart';
-import '../../../../core/extension/easy_localization_translate/easy_localization_translate.dart';
-import '../../../../core/init/lang/locale_keys.g.dart';
 import '../../../../core/init/theme/itheme/iTheme.dart';
 import '../../../../product/validators/email_validators.dart';
 import '../view_model/forgot_pass_view_model.dart';
@@ -37,7 +35,7 @@ class ForgotPasswordView extends StatelessWidget {
               ),
             ),
             title: Text(
-              LocaleKeys.forgot_password_forgot.translate,
+              "Unutuln sıfe gonder",
               style: ITheme.of(context).headlineSmall,
             ),
             actions: const [],
@@ -60,7 +58,7 @@ class ForgotPasswordView extends StatelessWidget {
                         children: [
                           Expanded(
                             child: Text(
-                              LocaleKeys.forgot_password_description.translate,
+                              "Locle Keys Sıl",
                               style: ITheme.of(context).bodySmall,
                             ),
                           ),
@@ -73,9 +71,9 @@ class ForgotPasswordView extends StatelessWidget {
                         controller: viewModel.emailAddressController,
                         obscureText: false,
                         decoration: InputDecoration(
-                          labelText: LocaleKeys.forgot_password_email_address.translate,
+                          labelText: "Locale Keys 2",
                           labelStyle: ITheme.of(context).bodySmall,
-                          hintText: LocaleKeys.forgot_password_email_address_hint.translate,
+                          hintText: "Locale keys 3",
                           hintStyle: ITheme.of(context).bodySmall,
                           enabledBorder: OutlineInputBorder(
                             borderSide: const BorderSide(
@@ -110,8 +108,7 @@ class ForgotPasswordView extends StatelessWidget {
                           contentPadding: const EdgeInsetsDirectional.fromSTEB(20.0, 24.0, 20.0, 24.0),
                         ),
                         style: ITheme.of(context).bodyMedium,
-                        validator: (value) =>
-                            (value?.isValidMail ?? false) ? null : LocaleKeys.forgot_password_invalid_email.translate,
+                        validator: (value) => (value?.isValidMail ?? false) ? null : "Gecersız emaıl",
                       ),
                     ),
                     Padding(
@@ -119,7 +116,7 @@ class ForgotPasswordView extends StatelessWidget {
                       child: Observer(builder: (_) {
                         return PlacarsButtonWidget(
                           onPressed: viewModel.isLoading ? null : () => viewModel.sendPasswResetMail,
-                          text: LocaleKeys.forgot_password_send_mail.translate,
+                          text: "",
                           options: FindJobButtonOptions(
                             width: 190.0,
                             height: 50.0,

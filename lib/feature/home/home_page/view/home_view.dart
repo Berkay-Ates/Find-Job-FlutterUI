@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:placars_savt/core/components/job_widgets.dart';
 import '../../../../core/base/view/base_view.dart';
 import '../view_model/home_view_model.dart';
 import '../../../../product/enums/home_post_enums.dart';
 
-import '../../../../core/components/find_job_car_post_widget.dart';
 import '../../../../core/components/find_job_icon_button.dart';
 import '../../../../core/init/theme/itheme/iTheme.dart';
 import '../notifications_page/view/notifications_view.dart';
@@ -119,12 +119,12 @@ class HomeView extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 4.0),
                             child: InkWell(
-                              onTap: () => viewModel.changePostCategory(HomePostEnums.interestings),
+                              onTap: () => viewModel.changePostCategory(HomePostEnums.highPaid),
                               child: Text(
                                 "Yüksek Maaşlı",
                                 style: ITheme.of(context).titleSmall.copyWith(
                                       fontFamily: 'Lexend',
-                                      color: viewModel.selectedPostCatgry == HomePostEnums.interestings
+                                      color: viewModel.selectedPostCatgry == HomePostEnums.highPaid
                                           ? ITheme.of(context).primaryText
                                           : ITheme.of(context).secondaryText,
                                       fontSize: 14.0,
@@ -171,7 +171,7 @@ class HomeView extends StatelessWidget {
                       child: Observer(builder: (_) {
                         return viewModel.isloading
                             ? const Center(child: CircularProgressIndicator())
-                            : viewModel.carLists.isEmpty
+                            : viewModel.joblist?.isEmpty ?? false
                                 ? Center(
                                     child: Text(
                                       "Gösterilecek hiç ilan yok",
@@ -180,28 +180,21 @@ class HomeView extends StatelessWidget {
                                     ),
                                   )
                                 : ListView.builder(
-                                    itemCount: viewModel.selectedPostCatgry == HomePostEnums.interestings
-                                        ? viewModel.carLists.length
+                                    itemCount: viewModel.selectedPostCatgry == HomePostEnums.highPaid
+                                        ? viewModel.joblist?.length
                                         : viewModel.selectedPostCatgry == HomePostEnums.newest
-                                            ? viewModel.carLists.length
-                                            : viewModel.carLists.length,
+                                            ? viewModel.joblist?.length
+                                            : viewModel.joblist?.length,
                                     padding: const EdgeInsets.only(bottom: 120),
                                     scrollDirection: Axis.vertical,
                                     itemBuilder: (context, index) {
-                                      return PlacarsCarPostsWidget(
-                                        userImageUrl: viewModel.carLists[index].profile_img_url ??
-                                            'https://images.unsplash.com/photo-1611590027211-b954fd027b51?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDd8fHByb2ZpbGV8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60',
-                                        carPlate: viewModel.carLists[index].carPlate ?? '34 ATC 48',
-                                        timePosted: viewModel.tarihiDuzenle(
-                                            viewModel.carLists[index].postDate ?? "2023-05-17T06:11:05.453916Z"),
-                                        postImageUrl: viewModel.carLists[index].carPhotoUrl ??
-                                            'https://hips.hearstapps.com/hmg-prod/images/2023-tesla-model-x-101-1671475309.jpeg?crop=0.402xw:0.362xh;0.381xw,0.295xh&resize=2048:*',
-                                        postDescription: viewModel.carLists[index].carDescription ??
-                                            'bu bir test metnidir bu bu bir test metnidir bu ir bu bir test metnidir bu bir test metnidir',
-                                        commentCount: viewModel.carLists[index].carLikeCount ?? 0,
-                                        likeCount: viewModel.carLists[index].carCommentCount ?? 0,
-                                        onTop: () => viewModel.navigateToCarPostView(viewModel.carLists[index]),
-                                      );
+                                      return MyJobsWidget(
+                                          title: viewModel.joblist?[index].title ?? "",
+                                          description: viewModel.joblist?[index].description ?? "",
+                                          application_count:
+                                              viewModel.joblist?[index].application_count.toString() ?? "",
+                                          salary: viewModel.joblist?[index].salary.toString() ?? "",
+                                          applyJob: () {});
                                     },
                                   );
                       }),

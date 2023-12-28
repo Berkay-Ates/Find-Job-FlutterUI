@@ -1,7 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:placars_savt/core/extension/easy_localization_translate/easy_localization_translate.dart';
-import 'package:placars_savt/core/init/lang/locale_keys.g.dart';
 import 'package:placars_savt/feature/home/home_page/notifications_page/view_model/notifications_view_model.dart';
 
 import '../../../../../core/base/view/base_view.dart';
@@ -43,7 +41,7 @@ class NotificationsView extends StatelessWidget {
                   },
                 ),
                 title: Text(
-                  LocaleKeys.notifications_page_appbar.translate,
+                  "Locale Keys 589",
                   style: ITheme.of(context).headlineMedium,
                 ),
                 actions: const [],

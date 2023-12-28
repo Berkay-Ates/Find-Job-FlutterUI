@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 import 'package:placars_savt/feature/home/add_company_page/view/company_add_view.dart';
 import 'package:placars_savt/feature/home/add_job_page/view/job_add_view.dart';
+import 'package:placars_savt/product/backend/backend_endpoints.dart';
 import '../../../../core/base/view_model/base_view_model.dart';
 import '../../../../core/constants/enums/cache_enum_keys.dart';
 import '../../../../core/init/cache/hive/hive_model.dart';
@@ -9,7 +10,7 @@ import '../../../../core/init/cache/hive_user_cache_manager/hive_user_cache_mana
 
 import '../../../../product/hive_models/user_hive_model.dart';
 
-import '../model/message_model.dart';
+import '../model/company_model.dart';
 
 part 'company_view_model.g.dart';
 
@@ -23,7 +24,7 @@ abstract class _CompanyViewModelBase with Store, BaseViewModel {
   UserHiveModel? userHiveModel;
 
   @observable
-  List<RecentlyMessaged> recentlyMessged = [];
+  List<CompanyResult>? companiesList = [];
 
   @observable
   bool isLoading = false;
@@ -37,7 +38,25 @@ abstract class _CompanyViewModelBase with Store, BaseViewModel {
   void setContext(BuildContext context) => baseContext = context;
 
   @override
-  void init() {}
+  void init() {
+    getAllCompanies();
+  }
+
+  Future<void> getAllCompanies() async {
+    changeLoading();
+    try {
+      final response = await appService?.dio.get(BackendURLS.GET_ALL_COMPANIES);
+      final data = response?.data;
+
+      if (data is Map<String, dynamic>) {
+        companiesList = Companies.fromJson(data).result;
+      }
+      print(response?.data);
+      changeLoading();
+    } catch (e) {
+      showSnackS();
+    }
+  }
 
   Future initHive() async {
     userHiveCacheManager = UserHiveCacheManager(CacheEnumKeys.USERHIVEBOXKEY.name);
@@ -46,7 +65,9 @@ abstract class _CompanyViewModelBase with Store, BaseViewModel {
   }
 
   Future<bool?> navigateToCompanyAdd() async {
-    return await Navigator.push(baseContext, MaterialPageRoute(builder: (context) => const CompanyAddView()));
+    final res = await Navigator.push(baseContext, MaterialPageRoute(builder: (context) => const CompanyAddView()));
+    getAllCompanies();
+    return res;
   }
 
   Future<bool> navigateToJobAdd() async {

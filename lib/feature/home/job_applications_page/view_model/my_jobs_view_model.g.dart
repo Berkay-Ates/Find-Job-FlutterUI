@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'my_cars_view_model.dart';
+part of 'my_jobs_view_model.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -9,19 +9,19 @@ part of 'my_cars_view_model.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$MyCarsViewModel on _MyCarsViewModelBase, Store {
-  late final _$carListsAtom =
-      Atom(name: '_MyCarsViewModelBase.carLists', context: context);
+  late final _$jobListsAtom =
+      Atom(name: '_MyCarsViewModelBase.jobLists', context: context);
 
   @override
-  List<Cars> get carLists {
-    _$carListsAtom.reportRead();
-    return super.carLists;
+  List<JobResult> get jobLists {
+    _$jobListsAtom.reportRead();
+    return super.jobLists;
   }
 
   @override
-  set carLists(List<Cars> value) {
-    _$carListsAtom.reportWrite(value, super.carLists, () {
-      super.carLists = value;
+  set jobLists(List<JobResult> value) {
+    _$jobListsAtom.reportWrite(value, super.jobLists, () {
+      super.jobLists = value;
     });
   }
 
@@ -93,7 +93,7 @@ mixin _$MyCarsViewModel on _MyCarsViewModelBase, Store {
   @override
   String toString() {
     return '''
-carLists: ${carLists},
+jobLists: ${jobLists},
 isloading: ${isloading},
 itemCounts: ${itemCounts}
     ''';

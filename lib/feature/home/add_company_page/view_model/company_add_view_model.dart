@@ -7,11 +7,11 @@ import 'package:placars_savt/feature/home/add_company_page/model/add_company_mod
 
 import '../../../../core/base/view_model/base_view_model.dart';
 import '../../../../core/constants/enums/cache_enum_keys.dart';
-import '../../../../core/extension/easy_localization_translate/easy_localization_translate.dart';
+
 import '../../../../core/image_upload/image_upload_manager.dart';
 import '../../../../core/init/cache/hive/hive_model.dart';
 import '../../../../core/init/cache/hive_user_cache_manager/hive_user_cache_manager.dart';
-import '../../../../core/init/lang/locale_keys.g.dart';
+
 import '../../../../product/backend/backend_endpoints.dart';
 import '../../../../product/hive_models/user_hive_model.dart';
 import '../model/image_upload_response.dart';
@@ -97,7 +97,7 @@ abstract class _CompanyAddViewModelBase with Store, BaseViewModel {
   @action
   String? textFieldsValidator(String? value) {
     if (value == null || value.isEmpty) {
-      return LocaleKeys.add_car_page_warn_txt.translate;
+      return "Locale Keys5";
     }
     return null;
   }

@@ -3,9 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'core/constants/app/application_constants.dart';
 import 'core/init/cache/shared/shared_object.dart';
-import 'core/init/lang/language_manager.dart';
 import 'core/init/theme/theme_provider/theme_provider.dart';
 import 'feature/splash/view/splash_view.dart';
 
@@ -13,10 +11,7 @@ void main() async {
   _init().then((value) {
     runApp(MultiProvider(
       providers: [ChangeNotifierProvider<ThemeProvider>(create: (context) => ThemeProvider())],
-      child: EasyLocalization(
-          supportedLocales: LanguageManager.instance.supportedLocales,
-          path: ApplicationConstants.langAssetPath,
-          child: const MyApp()),
+      child: const MyApp(),
     ));
   });
 }
@@ -35,9 +30,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        localizationsDelegates: context.localizationDelegates,
-        supportedLocales: context.supportedLocales,
-        locale: context.locale,
         title: 'Material App',
         debugShowCheckedModeBanner: false,
         home: const SplashHomeView(),

@@ -9,19 +9,19 @@ part of 'company_view_model.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$CompanyViewModel on _CompanyViewModelBase, Store {
-  late final _$recentlyMessgedAtom =
-      Atom(name: '_CompanyViewModelBase.recentlyMessged', context: context);
+  late final _$companiesListAtom =
+      Atom(name: '_CompanyViewModelBase.companiesList', context: context);
 
   @override
-  List<RecentlyMessaged> get recentlyMessged {
-    _$recentlyMessgedAtom.reportRead();
-    return super.recentlyMessged;
+  List<CompanyResult>? get companiesList {
+    _$companiesListAtom.reportRead();
+    return super.companiesList;
   }
 
   @override
-  set recentlyMessged(List<RecentlyMessaged> value) {
-    _$recentlyMessgedAtom.reportWrite(value, super.recentlyMessged, () {
-      super.recentlyMessged = value;
+  set companiesList(List<CompanyResult>? value) {
+    _$companiesListAtom.reportWrite(value, super.companiesList, () {
+      super.companiesList = value;
     });
   }
 
@@ -58,7 +58,7 @@ mixin _$CompanyViewModel on _CompanyViewModelBase, Store {
   @override
   String toString() {
     return '''
-recentlyMessged: ${recentlyMessged},
+companiesList: ${companiesList},
 isLoading: ${isLoading}
     ''';
   }

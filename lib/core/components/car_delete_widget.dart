@@ -1,8 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
-import '../extension/easy_localization_translate/easy_localization_translate.dart';
-import '../init/lang/locale_keys.g.dart';
 import '../init/theme/itheme/iTheme.dart';
 import 'find_job_button_widget.dart';
 
@@ -44,7 +42,7 @@ class CarDeleteWidget extends StatelessWidget {
               padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
               child: PlacarsButtonWidget(
                 onPressed: () => deleteCar(),
-                text: LocaleKeys.delete_car_widget_delete.translate,
+                text: "Arabayı sil",
                 options: FindJobButtonOptions(
                   width: 150.0,
                   height: 50.0,
@@ -71,7 +69,7 @@ class CarDeleteWidget extends StatelessWidget {
                 onPressed: () async {
                   Navigator.pop(context);
                 },
-                text: LocaleKeys.delete_car_widget_dismiss.translate,
+                text: "Silmekten vazgeç",
                 options: FindJobButtonOptions(
                   width: 150.0,
                   height: 50.0,

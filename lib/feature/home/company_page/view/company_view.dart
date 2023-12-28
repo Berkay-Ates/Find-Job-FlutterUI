@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 import 'package:placars_savt/core/base/view/base_view.dart';
+import 'package:placars_savt/core/components/company_widgets.dart';
 import 'package:placars_savt/feature/home/company_page/view_model/company_view_model.dart';
 
 import '../../../../core/components/find_job_icon_button.dart';
@@ -72,7 +73,7 @@ class CompanyView extends StatelessWidget {
                   Observer(builder: (_) {
                     return viewModel.isLoading
                         ? const Expanded(child: Center(child: CircularProgressIndicator()))
-                        : viewModel.recentlyMessged.isEmpty
+                        : viewModel.companiesList?.isEmpty ?? false
                             ? Column(
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
@@ -84,7 +85,16 @@ class CompanyView extends StatelessWidget {
                                   ),
                                 ],
                               )
-                            : const Expanded(child: Text("data"));
+                            : Expanded(
+                                child: ListView.builder(
+                                    itemCount: viewModel.companiesList?.length,
+                                    itemBuilder: ((context, index) {
+                                      return CompanyWidget(
+                                          company_img_url: viewModel.companiesList?[index].companyImgUrl ?? " ",
+                                          name: viewModel.companiesList?[index].name ?? "",
+                                          field: viewModel.companiesList?[index].field ?? "");
+                                    })),
+                              );
                   }),
                 ],
               ),

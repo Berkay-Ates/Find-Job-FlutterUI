@@ -1,1 +1,1 @@
-enum HomePostEnums { interestings, newest, popular }
+enum HomePostEnums { highPaid, newest, popular }

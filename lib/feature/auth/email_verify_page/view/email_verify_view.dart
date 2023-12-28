@@ -6,7 +6,7 @@ import '../view_model/email_verify_view_model.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../core/base/view/base_view.dart';
-import '../../../../core/components/placars_button_widget.dart';
+import '../../../../core/components/find_job_button_widget.dart';
 import '../../../../core/init/theme/itheme/iTheme.dart';
 import '../../../../core/init/theme/theme_provider/theme_provider.dart';
 import '../../../../product/image/image_enums.dart';
@@ -94,7 +94,7 @@ class EmailVerifyView extends StatelessWidget {
                                   viewModel.navigateSignInPage();
                                 },
                                 text: 'Geri Dön',
-                                options: PlacarsButtonOptions(
+                                options: FindJobButtonOptions(
                                   width: 130,
                                   height: 40,
                                   padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
@@ -118,7 +118,7 @@ class EmailVerifyView extends StatelessWidget {
                                   await viewModel.isMailVerified();
                                 },
                                 text: 'Doğrulandı',
-                                options: PlacarsButtonOptions(
+                                options: FindJobButtonOptions(
                                   width: 130,
                                   height: 40,
                                   padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),

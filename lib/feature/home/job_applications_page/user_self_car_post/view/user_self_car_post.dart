@@ -7,8 +7,8 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:placars_savt/feature/home/home_page/model/car_home_post_model.dart';
 
 import '../../../../../core/base/view/base_view.dart';
-import '../../../../../core/components/placars_button_widget.dart';
-import '../../../../../core/components/placars_icon_button.dart';
+import '../../../../../core/components/find_job_button_widget.dart';
+import '../../../../../core/components/find_job_icon_button.dart';
 import '../../../../../core/init/theme/itheme/iTheme.dart';
 import '../../../home_page/car_post_detail_page/view/car_post_detail_view.dart';
 import '../view_model/user_self_car_post_view_model.dart';
@@ -34,7 +34,7 @@ class UserSelfCarPostView extends StatelessWidget {
               appBar: AppBar(
                 backgroundColor: ITheme.of(context).primaryBackground,
                 automaticallyImplyLeading: false,
-                leading: PlacarsIconButton(
+                leading: FindJobIconButton(
                   borderColor: Colors.transparent,
                   borderRadius: 30.0,
                   borderWidth: 1.0,
@@ -290,7 +290,7 @@ class UserSelfCarPostView extends StatelessWidget {
                                       // }
                                     },
                                     text: 'Mesaj At',
-                                    options: PlacarsButtonOptions(
+                                    options: FindJobButtonOptions(
                                       width: 100.0,
                                       height: 30.0,
                                       padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),

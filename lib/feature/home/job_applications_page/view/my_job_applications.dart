@@ -7,12 +7,10 @@ import 'package:placars_savt/core/base/view/base_view.dart';
 import 'package:placars_savt/core/components/car_delete_widget.dart';
 import 'package:placars_savt/core/constants/durations/app_durations.dart';
 import 'package:placars_savt/core/extension/device_properties/device_properties.dart';
-import 'package:placars_savt/core/extension/easy_localization_translate/easy_localization_translate.dart';
-import 'package:placars_savt/feature/home/cars_page/view_model/my_cars_view_model.dart';
+import 'package:placars_savt/feature/home/job_applications_page/view_model/my_cars_view_model.dart';
 
 import '../../../../core/components/my_cars_widgets.dart';
-import '../../../../core/components/placars_icon_button.dart';
-import '../../../../core/init/lang/locale_keys.g.dart';
+
 import '../../../../core/init/theme/itheme/iTheme.dart';
 
 class CarsView extends StatelessWidget {
@@ -36,31 +34,9 @@ class CarsView extends StatelessWidget {
                 backgroundColor: ITheme.of(context).primaryBackground,
                 automaticallyImplyLeading: false,
                 title: Text(
-                  LocaleKeys.my_cars_page_appbar.translate,
+                  "Iş Başvurularım",
                   style: ITheme.of(context).headlineMedium,
                 ),
-                actions: [
-                  Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
-                    child: PlacarsIconButton(
-                      borderColor: Colors.transparent,
-                      borderRadius: 30.0,
-                      borderWidth: 1.0,
-                      buttonSize: 60.0,
-                      icon: Icon(
-                        Icons.add,
-                        color: ITheme.of(context).secondaryText,
-                        size: 30.0,
-                      ),
-                      onPressed: () async {
-                        final response = await viewModel.navigateToCarAdd();
-                        if (response == true) {
-                          viewModel.getMyCars();
-                        }
-                      },
-                    ),
-                  ),
-                ],
                 centerTitle: false,
                 elevation: 0.0,
               ),
@@ -72,7 +48,7 @@ class CarsView extends StatelessWidget {
                             child: SizedBox(
                             width: (context.deviceWidth ?? 400) * 0.70,
                             child: Text(
-                              LocaleKeys.car_list_page_add_new_cars.translate,
+                              "Hiç İş Başvurunuz yok!",
                               textAlign: TextAlign.center,
                               style: ITheme.of(context).labelLarge.copyWith(fontSize: 18),
                             ),

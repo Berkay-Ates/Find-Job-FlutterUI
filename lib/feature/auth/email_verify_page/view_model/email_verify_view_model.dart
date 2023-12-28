@@ -81,11 +81,11 @@ abstract class _EmailVerifyViewModelBase with Store, BaseViewModel {
               emailCheckRes.result?[0].surname,
               emailCheckRes.result?[0].mail,
               emailCheckRes.result?[0].person_id,
-              img_url,
+              emailCheckRes.result?[0].profile_img_url,
               emailCheckRes.result?[0].created_date,
               emailCheckRes.result?[0].gender,
               emailCheckRes.result?[0].is_active,
-              password,
+              emailCheckRes.result?[0].user_password,
             );
             await userHiveCacheManager?.putItem(CacheEnumKeys.USERHIVEKEY.name, userHiveModel);
             navigateHomePage();

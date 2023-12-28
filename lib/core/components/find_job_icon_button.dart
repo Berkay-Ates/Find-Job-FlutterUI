@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class PlacarsIconButton extends StatefulWidget {
-  const PlacarsIconButton({
+class FindJobIconButton extends StatefulWidget {
+  const FindJobIconButton({
     Key? key,
     required this.icon,
     this.borderColor,
@@ -32,10 +32,10 @@ class PlacarsIconButton extends StatefulWidget {
   final Function()? onPressed;
 
   @override
-  State<PlacarsIconButton> createState() => _PlacarsIconButtonState();
+  State<FindJobIconButton> createState() => _PlacarsIconButtonState();
 }
 
-class _PlacarsIconButtonState extends State<PlacarsIconButton> {
+class _PlacarsIconButtonState extends State<FindJobIconButton> {
   bool loading = false;
   late double? iconSize;
   late Color? iconColor;
@@ -48,7 +48,7 @@ class _PlacarsIconButtonState extends State<PlacarsIconButton> {
   }
 
   @override
-  void didUpdateWidget(PlacarsIconButton oldWidget) {
+  void didUpdateWidget(FindJobIconButton oldWidget) {
     super.didUpdateWidget(oldWidget);
     _updateIcon();
   }

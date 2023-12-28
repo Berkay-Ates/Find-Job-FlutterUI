@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 import '../../../../core/base/view/base_view.dart';
-import '../../../../core/components/placars_button_widget.dart';
+import '../../../../core/components/find_job_button_widget.dart';
 import '../../../../core/init/theme/itheme/iTheme.dart';
 import '../view_model/sign_up_view_model.dart';
 
@@ -422,7 +422,7 @@ class SignUpView extends StatelessWidget {
                                                     await viewModel.signUpUser();
                                                   },
                                                   text: 'Hesap Oluştur',
-                                                  options: PlacarsButtonOptions(
+                                                  options: FindJobButtonOptions(
                                                     width: 140.0,
                                                     height: 50.0,
                                                     padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),

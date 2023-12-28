@@ -126,7 +126,8 @@ abstract class _SignInViewModelBase with Store, BaseViewModel {
       }
     } else if (response?.statusCode == HttpStatus.created) {
       // navigateEmailSendPage();
-      showSnackS("Bu mail addresi dogrulanmamis Kayit oldan dogrulayabilirsiniz.");
+      showSnackS(
+          "Bu mail addresi dogrulanmamis Kayit oldan dogrulayabilirsiniz. Yada az önce yollanan mailden doğrulayabilirsin.");
     } else {
       showSnackS('Server tarafinda hatali olaylar oldu.');
     }

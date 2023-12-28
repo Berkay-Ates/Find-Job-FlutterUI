@@ -41,12 +41,6 @@ mixin _$MessagesViewModel on _MessagesViewModelBase, Store {
     });
   }
 
-  @override
-  ObservableFuture<void> getUserMessagedPersons() {
-    final _$future = super.getUserMessagedPersons();
-    return ObservableFuture<void>(_$future, context: context);
-  }
-
   late final _$_MessagesViewModelBaseActionController =
       ActionController(name: '_MessagesViewModelBase', context: context);
 

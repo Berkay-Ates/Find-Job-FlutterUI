@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
+import 'package:placars_savt/feature/home/company_page/chat_page/view/chat_view.dart';
 
 import '../../../../../core/base/view_model/base_view_model.dart';
 import '../../../../../core/constants/enums/cache_enum_keys.dart';
@@ -10,7 +11,6 @@ import '../../../../../core/init/cache/hive_user_cache_manager/hive_user_cache_m
 import '../../../../../core/init/lang/locale_keys.g.dart';
 import '../../../../../product/hive_models/user_hive_model.dart';
 import '../../../home_page/model/car_home_post_model.dart';
-import '../../../messages_page/chat_page/view/chat_view.dart';
 
 part 'user_self_car_post_view_model.g.dart';
 

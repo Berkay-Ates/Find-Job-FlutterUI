@@ -10,7 +10,7 @@ import '../../../../product/image/image_enums.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 import '../../../../core/base/view/base_view.dart';
-import '../../../../core/components/placars_button_widget.dart';
+import '../../../../core/components/find_job_button_widget.dart';
 import '../view_model/sign_in_view_model.dart';
 
 class SignInView extends StatelessWidget {
@@ -216,7 +216,7 @@ class SignInView extends StatelessWidget {
                                               viewModel.navigateForgotPassPage();
                                             },
                                             text: 'Şifremi Unuttum',
-                                            options: PlacarsButtonOptions(
+                                            options: FindJobButtonOptions(
                                               width: 170.0,
                                               height: 40.0,
                                               padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
@@ -238,7 +238,7 @@ class SignInView extends StatelessWidget {
                                               await viewModel.signInUser();
                                             },
                                             text: 'Giriş Yap',
-                                            options: PlacarsButtonOptions(
+                                            options: FindJobButtonOptions(
                                               width: 120.0,
                                               height: 50.0,
                                               padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),

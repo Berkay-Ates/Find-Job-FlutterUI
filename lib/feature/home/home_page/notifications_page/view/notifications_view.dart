@@ -6,7 +6,7 @@ import 'package:placars_savt/feature/home/home_page/notifications_page/view_mode
 
 import '../../../../../core/base/view/base_view.dart';
 import '../../../../../core/components/notifications_info_widget.dart';
-import '../../../../../core/components/placars_icon_button.dart';
+import '../../../../../core/components/find_job_icon_button.dart';
 import '../../../../../core/init/theme/itheme/iTheme.dart';
 
 class NotificationsView extends StatelessWidget {
@@ -28,7 +28,7 @@ class NotificationsView extends StatelessWidget {
               appBar: AppBar(
                 backgroundColor: ITheme.of(context).primaryBackground,
                 automaticallyImplyLeading: false,
-                leading: PlacarsIconButton(
+                leading: FindJobIconButton(
                   borderColor: Colors.transparent,
                   borderRadius: 30.0,
                   borderWidth: 1.0,
@@ -55,7 +55,7 @@ class NotificationsView extends StatelessWidget {
                 scrollDirection: Axis.vertical,
                 itemCount: 15,
                 itemBuilder: (context, index) {
-                  return const NotificationInfoWidget(plate: "34 YZ 56", date: "5 ay once");
+                  return const NotificationInfoWidget(company: "Apple", date: "5 ay once");
                 },
               ),
             ),

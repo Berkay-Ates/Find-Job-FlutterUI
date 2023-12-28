@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 import '../../../../../core/base/view/base_view.dart';
-import '../../../../../core/components/placars_button_widget.dart';
-import '../../../../../core/components/placars_icon_button.dart';
+import '../../../../../core/components/find_job_button_widget.dart';
+import '../../../../../core/components/find_job_icon_button.dart';
 import '../../../../../core/extension/easy_localization_translate/easy_localization_translate.dart';
 import '../../../../../core/init/lang/locale_keys.g.dart';
 import '../../../../../core/init/theme/itheme/iTheme.dart';
@@ -26,7 +26,7 @@ class NotificationsSettingView extends StatelessWidget {
             appBar: AppBar(
               backgroundColor: ITheme.of(context).primaryBackground,
               automaticallyImplyLeading: false,
-              leading: PlacarsIconButton(
+              leading: FindJobIconButton(
                 borderColor: Colors.transparent,
                 borderRadius: 30.0,
                 borderWidth: 1.0,
@@ -84,7 +84,7 @@ class NotificationsSettingView extends StatelessWidget {
                                 viewModel.saveNotificationsSettings();
                               },
                         text: LocaleKeys.notifications_settings_save.translate,
-                        options: PlacarsButtonOptions(
+                        options: FindJobButtonOptions(
                           width: 170.0,
                           height: 40.0,
                           padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),

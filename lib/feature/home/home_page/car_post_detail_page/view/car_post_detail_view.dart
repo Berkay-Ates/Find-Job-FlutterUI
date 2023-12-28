@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:placars_savt/core/extension/easy_localization_translate/easy_localization_translate.dart';
 import 'package:placars_savt/core/init/lang/locale_keys.g.dart';
-import 'package:placars_savt/feature/home/cars_page/user_self_car_post/view/user_self_car_post.dart';
 import 'package:placars_savt/feature/home/home_page/car_post_detail_page/view_model/car_post_detail_view_model.dart';
+import 'package:placars_savt/feature/home/job_applications_page/user_self_car_post/view/user_self_car_post.dart';
 
 import '../../../../../core/base/view/base_view.dart';
-import '../../../../../core/components/placars_icon_button.dart';
+import '../../../../../core/components/find_job_icon_button.dart';
 import '../../../../../core/init/theme/itheme/iTheme.dart';
 import '../../model/car_home_post_model.dart';
 
@@ -41,7 +41,7 @@ class CarPostDetailView extends StatelessWidget {
               ),
               backgroundColor: ITheme.of(context).secondaryBackground,
               automaticallyImplyLeading: false,
-              leading: PlacarsIconButton(
+              leading: FindJobIconButton(
                 borderColor: Colors.transparent,
                 borderRadius: 30.0,
                 borderWidth: 1.0,

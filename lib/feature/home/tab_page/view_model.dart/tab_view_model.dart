@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
+import 'package:placars_savt/feature/home/company_page/view/company_view.dart';
+import 'package:placars_savt/feature/home/job_applications_page/view/my_job_applications.dart';
 
 import '../../../../core/base/view_model/base_view_model.dart';
 import '../../../../product/enums/tab_enums.dart';
-import '../../cars_page/view/my_cars_view.dart';
 import '../../home_page/view/home_view.dart';
-import '../../messages_page/view/messages_view.dart';
+
 import '../../settings_page/view/user_settings_view.dart';
 
 part 'tab_view_model.g.dart';
@@ -24,7 +25,7 @@ abstract class _PlacarsTabViewModelBase with Store, BaseViewModel {
   final tabs = {
     TabEnums.home.name: const HomeView(),
     TabEnums.mycars.name: const CarsView(),
-    TabEnums.messages.name: const MessagesView(),
+    TabEnums.messages.name: const CompanyView(),
     TabEnums.user.name: const UserSettingsView(),
   };
 

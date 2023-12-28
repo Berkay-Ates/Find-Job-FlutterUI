@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../core/base/view/base_view.dart';
-import '../../../../../core/components/placars_button_widget.dart';
-import '../../../../../core/components/placars_icon_button.dart';
+import '../../../../../core/components/find_job_button_widget.dart';
+import '../../../../../core/components/find_job_icon_button.dart';
 import '../../../../../core/extension/easy_localization_translate/easy_localization_translate.dart';
 import '../../../../../core/init/lang/locale_keys.g.dart';
 import '../../../../../core/init/theme/itheme/iTheme.dart';
@@ -25,7 +25,7 @@ class ProfileSettingsView extends StatelessWidget {
             appBar: AppBar(
               backgroundColor: ITheme.of(context).primaryBackground,
               automaticallyImplyLeading: false,
-              leading: PlacarsIconButton(
+              leading: FindJobIconButton(
                 borderColor: Colors.transparent,
                 borderRadius: 30.0,
                 borderWidth: 1.0,
@@ -98,7 +98,7 @@ class ProfileSettingsView extends StatelessWidget {
                                     print('Button pressed ...');
                                   },
                                   text: LocaleKeys.edit_profile_prfl_photo.translate,
-                                  options: PlacarsButtonOptions(
+                                  options: FindJobButtonOptions(
                                     width: 130.0,
                                     height: 40.0,
                                     padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
@@ -415,7 +415,7 @@ class ProfileSettingsView extends StatelessWidget {
                                     viewModel.updateUserInfo();
                                   },
                                   text: LocaleKeys.edit_profile_update_profile_btn.translate,
-                                  options: PlacarsButtonOptions(
+                                  options: FindJobButtonOptions(
                                     width: 190.0,
                                     height: 50.0,
                                     padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),

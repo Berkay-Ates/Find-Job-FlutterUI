@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../extension/easy_localization_translate/easy_localization_translate.dart';
 import '../init/lang/locale_keys.g.dart';
 import '../init/theme/itheme/iTheme.dart';
-import 'placars_button_widget.dart';
+import 'find_job_button_widget.dart';
 
 class ExitWidget extends StatelessWidget {
   const ExitWidget({
@@ -45,7 +45,7 @@ class ExitWidget extends StatelessWidget {
               child: PlacarsButtonWidget(
                 onPressed: () => logout(),
                 text: LocaleKeys.exit_widget_exit.translate,
-                options: PlacarsButtonOptions(
+                options: FindJobButtonOptions(
                   width: 150.0,
                   height: 50.0,
                   padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
@@ -72,7 +72,7 @@ class ExitWidget extends StatelessWidget {
                   Navigator.pop(context);
                 },
                 text: LocaleKeys.exit_widget_dispose.translate,
-                options: PlacarsButtonOptions(
+                options: FindJobButtonOptions(
                   width: 150.0,
                   height: 50.0,
                   padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),

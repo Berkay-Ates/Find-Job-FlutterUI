@@ -2,8 +2,8 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class PlacarsButtonOptions {
-  const PlacarsButtonOptions({
+class FindJobButtonOptions {
+  const FindJobButtonOptions({
     this.textStyle,
     this.elevation,
     this.height,
@@ -59,7 +59,7 @@ class PlacarsButtonWidget extends StatefulWidget {
   final Widget? icon;
   final IconData? iconData;
   final Function()? onPressed;
-  final PlacarsButtonOptions options;
+  final FindJobButtonOptions options;
   final bool showLoadingIndicator;
 
   @override

@@ -38,7 +38,7 @@ abstract class _SplashViewModelBase with Store, BaseViewModel {
     await userHiveCacheManager?.init();
     userHiveModel = userHiveCacheManager?.getItem(CacheEnumKeys.USERHIVEKEY.name);
 
-    if (userHiveModel?.mail?.isNotEmpty ?? false) {
+    if (userHiveModel?.is_active ?? false) {
       // ignore: use_build_context_synchronously
       Navigator.pushAndRemoveUntil(
           baseContext, MaterialPageRoute(builder: (context) => const FindJobApiTabView()), (route) => false);

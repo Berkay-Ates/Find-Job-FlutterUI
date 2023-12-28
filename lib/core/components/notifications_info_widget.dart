@@ -1,17 +1,15 @@
 import 'package:flutter/cupertino.dart';
 
-import '../extension/easy_localization_translate/easy_localization_translate.dart';
-import '../init/lang/locale_keys.g.dart';
 import '../init/theme/itheme/iTheme.dart';
 
 class NotificationInfoWidget extends StatelessWidget {
   const NotificationInfoWidget({
     Key? key,
-    required this.plate,
+    required this.company,
     required this.date,
   }) : super(key: key);
 
-  final String plate;
+  final String company;
   final String date;
 
   @override
@@ -49,7 +47,7 @@ class NotificationInfoWidget extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
                   child: Text(
-                    "$plate ${LocaleKeys.notifications_page_new_comment.translate}",
+                    "$company sirketi tam senlik bir is ilani paylsti",
                     style: ITheme.of(context).titleMedium.copyWith(
                           fontFamily: 'Lexend',
                           fontSize: 14.0,

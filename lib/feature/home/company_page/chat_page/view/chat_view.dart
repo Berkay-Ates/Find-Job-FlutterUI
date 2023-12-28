@@ -6,7 +6,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import '../../../../../core/base/view/base_view.dart';
 import '../../../../../core/components/message_receiver_bubble_widget.dart';
 import '../../../../../core/components/message_sender_bubble_widget.dart';
-import '../../../../../core/components/placars_icon_button.dart';
+import '../../../../../core/components/find_job_icon_button.dart';
 import '../../../../../core/extension/easy_localization_translate/easy_localization_translate.dart';
 import '../../../../../core/init/lang/locale_keys.g.dart';
 import '../../../../../core/init/theme/itheme/iTheme.dart';
@@ -37,7 +37,7 @@ class ChatView extends StatelessWidget {
             appBar: AppBar(
               backgroundColor: ITheme.of(context).primaryBackground,
               automaticallyImplyLeading: false,
-              leading: PlacarsIconButton(
+              leading: FindJobIconButton(
                 borderColor: Colors.transparent,
                 borderRadius: 30,
                 borderWidth: 1,

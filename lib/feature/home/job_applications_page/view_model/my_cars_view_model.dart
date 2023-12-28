@@ -10,7 +10,6 @@ import '../../../../core/init/cache/hive/hive_model.dart';
 import '../../../../core/init/cache/hive_user_cache_manager/hive_user_cache_manager.dart';
 import '../../../../product/backend/backend_endpoints.dart';
 import '../../../../product/hive_models/user_hive_model.dart';
-import '../../add_car_page/view/car_add_view.dart';
 import '../../home_page/model/car_home_post_model.dart';
 import '../user_self_car_post/view/user_self_car_post.dart';
 
@@ -64,10 +63,6 @@ abstract class _MyCarsViewModelBase with Store, BaseViewModel {
       inspect(e);
       changeLoading();
     }
-  }
-
-  Future<Object> navigateToCarAdd() async {
-    return await Navigator.push(baseContext, MaterialPageRoute(builder: (context) => const CarAddView()));
   }
 
   @action

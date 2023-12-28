@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 import '../../../../core/base/view/base_view.dart';
-import '../../../../core/components/placars_button_widget.dart';
+import '../../../../core/components/find_job_button_widget.dart';
 import '../../../../core/extension/easy_localization_translate/easy_localization_translate.dart';
 import '../../../../core/init/lang/locale_keys.g.dart';
 import '../../../../core/init/theme/itheme/iTheme.dart';
@@ -120,7 +120,7 @@ class ForgotPasswordView extends StatelessWidget {
                         return PlacarsButtonWidget(
                           onPressed: viewModel.isLoading ? null : () => viewModel.sendPasswResetMail,
                           text: LocaleKeys.forgot_password_send_mail.translate,
-                          options: PlacarsButtonOptions(
+                          options: FindJobButtonOptions(
                             width: 190.0,
                             height: 50.0,
                             padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),

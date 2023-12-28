@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import '../../../../core/base/view/base_view.dart';
-import '../../../../core/extension/easy_localization_translate/easy_localization_translate.dart';
-import '../../../../core/init/lang/locale_keys.g.dart';
 import '../view_model/home_view_model.dart';
 import '../../../../product/enums/home_post_enums.dart';
 
-import '../../../../core/components/placars_car_post_widget.dart';
-import '../../../../core/components/placars_icon_button.dart';
+import '../../../../core/components/find_job_car_post_widget.dart';
+import '../../../../core/components/find_job_icon_button.dart';
 import '../../../../core/init/theme/itheme/iTheme.dart';
 import '../notifications_page/view/notifications_view.dart';
 
@@ -32,7 +30,7 @@ class HomeView extends StatelessWidget {
                 backgroundColor: ITheme.of(context).primaryBackground,
                 automaticallyImplyLeading: false,
                 title: Text(
-                  LocaleKeys.home_page_app_name.translate,
+                  "FindJob",
                   style: ITheme.of(context)
                       .headlineMedium
                       .copyWith(fontFamily: 'Lexend', color: ITheme.of(context).primaryText),
@@ -40,7 +38,7 @@ class HomeView extends StatelessWidget {
                 actions: [
                   Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
-                    child: PlacarsIconButton(
+                    child: FindJobIconButton(
                       borderColor: Colors.transparent,
                       borderRadius: 30.0,
                       borderWidth: 1.0,
@@ -69,7 +67,7 @@ class HomeView extends StatelessWidget {
                       onChanged: null,
                       obscureText: false,
                       decoration: InputDecoration(
-                        labelText: LocaleKeys.home_page_search.translate,
+                        labelText: "İş ara",
                         labelStyle: ITheme.of(context).bodySmall,
                         enabledBorder: OutlineInputBorder(
                           borderSide: const BorderSide(
@@ -123,7 +121,7 @@ class HomeView extends StatelessWidget {
                             child: InkWell(
                               onTap: () => viewModel.changePostCategory(HomePostEnums.interestings),
                               child: Text(
-                                LocaleKeys.home_page_interesting.translate,
+                                "Yüksek Maaşlı",
                                 style: ITheme.of(context).titleSmall.copyWith(
                                       fontFamily: 'Lexend',
                                       color: viewModel.selectedPostCatgry == HomePostEnums.interestings
@@ -140,7 +138,7 @@ class HomeView extends StatelessWidget {
                               GestureDetector(
                                 onTap: () => viewModel.changePostCategory(HomePostEnums.newest),
                                 child: Text(
-                                  LocaleKeys.home_page_news.translate,
+                                  "En Yeni",
                                   style: ITheme.of(context).bodyMedium.copyWith(
                                         fontFamily: 'Lexend',
                                         color: viewModel.selectedPostCatgry == HomePostEnums.newest
@@ -154,7 +152,7 @@ class HomeView extends StatelessWidget {
                           GestureDetector(
                             onTap: () => viewModel.changePostCategory(HomePostEnums.popular),
                             child: Text(
-                              LocaleKeys.home_page_liked.translate,
+                              "En Çok Başvurulan",
                               style: ITheme.of(context).bodyMedium.copyWith(
                                     fontFamily: 'Lexend',
                                     color: viewModel.selectedPostCatgry == HomePostEnums.popular
@@ -176,7 +174,7 @@ class HomeView extends StatelessWidget {
                             : viewModel.carLists.isEmpty
                                 ? Center(
                                     child: Text(
-                                      LocaleKeys.home_page_no_car_warn_txt.translate,
+                                      "Gösterilecek hiç ilan yok",
                                       textAlign: TextAlign.center,
                                       style: ITheme.of(context).headlineSmall,
                                     ),

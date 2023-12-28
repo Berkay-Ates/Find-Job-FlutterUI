@@ -32,6 +32,8 @@ class Result {
   String? created_date;
   bool? is_active;
   String? gender;
+  String? user_password;
+  String? profile_img_url;
 
   Result({this.name, this.surname, this.mail, this.person_id, this.created_date, this.is_active, this.gender});
 
@@ -43,6 +45,8 @@ class Result {
     created_date = json['created_date'];
     is_active = json['is_active'];
     gender = json['gender'];
+    user_password = json['user_password'];
+    profile_img_url = json['profile_img_url'];
   }
 
   Map<String, dynamic> toJson() {
@@ -54,6 +58,8 @@ class Result {
     data['created_date'] = created_date;
     data['is_active'] = is_active;
     data['gender'] = gender;
+    data['user_password'] = user_password;
+    data['profile_img_url'] = profile_img_url;
     return data;
   }
 }

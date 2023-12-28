@@ -3,9 +3,9 @@
 class BackendURLS {
   static const String BASE_URL = 'https://findjopapi.onrender.com';
 
-  static const String CREATE_ACCOUNT = 'https://findjopapi.onrender.com/createUser/';
-  static const String SING_IN = 'https://findjopapi.onrender.com/loginUser/';
-  static const String GET_ONE_USER_INFOR = 'https://findjopapi.onrender.com/getOneUserInformation/';
+  static const String CREATE_ACCOUNT = '$BASE_URL/createUser/';
+  static const String SING_IN = '$BASE_URL/loginUser/';
+  static const String GET_ONE_USER_INFOR = '$BASE_URL/getOneUserInformation/';
 
   static const String CREATE_USER_POST = '$BASE_URL/createUserPost/';
   static const String GET_USER_POST = '$BASE_URL/getUserPosts/';

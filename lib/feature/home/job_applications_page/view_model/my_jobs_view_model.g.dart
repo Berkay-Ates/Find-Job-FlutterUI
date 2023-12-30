@@ -9,19 +9,19 @@ part of 'my_jobs_view_model.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$MyCarsViewModel on _MyCarsViewModelBase, Store {
-  late final _$jobListsAtom =
-      Atom(name: '_MyCarsViewModelBase.jobLists', context: context);
+  late final _$appliedJobListsAtom =
+      Atom(name: '_MyCarsViewModelBase.appliedJobLists', context: context);
 
   @override
-  List<JobResult> get jobLists {
-    _$jobListsAtom.reportRead();
-    return super.jobLists;
+  List<JobPageJobApplication> get appliedJobLists {
+    _$appliedJobListsAtom.reportRead();
+    return super.appliedJobLists;
   }
 
   @override
-  set jobLists(List<JobResult> value) {
-    _$jobListsAtom.reportWrite(value, super.jobLists, () {
-      super.jobLists = value;
+  set appliedJobLists(List<JobPageJobApplication> value) {
+    _$appliedJobListsAtom.reportWrite(value, super.appliedJobLists, () {
+      super.appliedJobLists = value;
     });
   }
 
@@ -41,28 +41,22 @@ mixin _$MyCarsViewModel on _MyCarsViewModelBase, Store {
     });
   }
 
-  late final _$itemCountsAtom =
-      Atom(name: '_MyCarsViewModelBase.itemCounts', context: context);
+  late final _$getAppliedJobsAsyncAction =
+      AsyncAction('_MyCarsViewModelBase.getAppliedJobs', context: context);
 
   @override
-  int get itemCounts {
-    _$itemCountsAtom.reportRead();
-    return super.itemCounts;
+  Future<void> getAppliedJobs() {
+    return _$getAppliedJobsAsyncAction.run(() => super.getAppliedJobs());
   }
 
-  @override
-  set itemCounts(int value) {
-    _$itemCountsAtom.reportWrite(value, super.itemCounts, () {
-      super.itemCounts = value;
-    });
-  }
-
-  late final _$getMyCarsAsyncAction =
-      AsyncAction('_MyCarsViewModelBase.getMyCars', context: context);
+  late final _$deleteJobApplicationAsyncAction = AsyncAction(
+      '_MyCarsViewModelBase.deleteJobApplication',
+      context: context);
 
   @override
-  Future<dynamic> getMyCars() {
-    return _$getMyCarsAsyncAction.run(() => super.getMyCars());
+  Future<void> deleteJobApplication(int index) {
+    return _$deleteJobApplicationAsyncAction
+        .run(() => super.deleteJobApplication(index));
   }
 
   late final _$_MyCarsViewModelBaseActionController =
@@ -80,22 +74,10 @@ mixin _$MyCarsViewModel on _MyCarsViewModelBase, Store {
   }
 
   @override
-  void changeItemCount() {
-    final _$actionInfo = _$_MyCarsViewModelBaseActionController.startAction(
-        name: '_MyCarsViewModelBase.changeItemCount');
-    try {
-      return super.changeItemCount();
-    } finally {
-      _$_MyCarsViewModelBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   String toString() {
     return '''
-jobLists: ${jobLists},
-isloading: ${isloading},
-itemCounts: ${itemCounts}
+appliedJobLists: ${appliedJobLists},
+isloading: ${isloading}
     ''';
   }
 }

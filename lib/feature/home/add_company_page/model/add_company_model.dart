@@ -5,11 +5,11 @@ part 'add_company_model.g.dart';
 
 @JsonSerializable()
 class CompanyModel {
-  String? name;
-  String? company_id;
-  String? created_date;
-  String? field;
-  String? company_img_url;
+  final String? name;
+  final int? company_id;
+  final String? created_date;
+  final String? field;
+  final String? company_img_url;
 
   CompanyModel(
     this.name,

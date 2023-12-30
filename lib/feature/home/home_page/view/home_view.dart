@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:placars_savt/core/components/company_jobs_bottom_sheet.dart';
 import 'package:placars_savt/core/components/job_widgets.dart';
 import '../../../../core/base/view/base_view.dart';
 import '../view_model/home_view_model.dart';
@@ -65,9 +68,27 @@ class HomeView extends StatelessWidget {
                     child: TextFormField(
                       controller: viewModel.textController,
                       onChanged: null,
+                      onEditingComplete: () async {
+                        FocusScope.of(context).requestFocus(FocusNode());
+                        inspect("EdITING COMPLETED");
+                        //* GetCompanyBasedJobs
+                        await viewModel.getCompanyJobs();
+                        // ignore: use_build_context_synchronously
+                        final result = await showModalBottomSheet(
+                          isScrollControlled: true,
+                          backgroundColor: const Color(0x00FFFFFF),
+                          enableDrag: false,
+                          context: context,
+                          builder: (bottomSheetContext) {
+                            return CompanyJobsBottomSheetWidget(jobs: viewModel.companyJobList);
+                          },
+                        );
+                        inspect(result);
+                      },
+                      focusNode: viewModel.focusNode,
                       obscureText: false,
                       decoration: InputDecoration(
-                        labelText: "İş ara",
+                        labelText: "Comp Id ile iş ara",
                         labelStyle: ITheme.of(context).bodySmall,
                         enabledBorder: OutlineInputBorder(
                           borderSide: const BorderSide(
@@ -119,12 +140,12 @@ class HomeView extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 4.0),
                             child: InkWell(
-                              onTap: () => viewModel.changePostCategory(HomePostEnums.highPaid),
+                              onTap: () => viewModel.changeJobOrderCategory(HomeJobsorderEnums.highPaid),
                               child: Text(
                                 "Yüksek Maaşlı",
                                 style: ITheme.of(context).titleSmall.copyWith(
                                       fontFamily: 'Lexend',
-                                      color: viewModel.selectedPostCatgry == HomePostEnums.highPaid
+                                      color: viewModel.selectedJobOrder == HomeJobsorderEnums.highPaid
                                           ? ITheme.of(context).primaryText
                                           : ITheme.of(context).secondaryText,
                                       fontSize: 14.0,
@@ -136,12 +157,12 @@ class HomeView extends StatelessWidget {
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               GestureDetector(
-                                onTap: () => viewModel.changePostCategory(HomePostEnums.newest),
+                                onTap: () => viewModel.changeJobOrderCategory(HomeJobsorderEnums.newest),
                                 child: Text(
                                   "En Yeni",
                                   style: ITheme.of(context).bodyMedium.copyWith(
                                         fontFamily: 'Lexend',
-                                        color: viewModel.selectedPostCatgry == HomePostEnums.newest
+                                        color: viewModel.selectedJobOrder == HomeJobsorderEnums.newest
                                             ? ITheme.of(context).primaryText
                                             : ITheme.of(context).secondaryText,
                                       ),
@@ -150,12 +171,12 @@ class HomeView extends StatelessWidget {
                             ],
                           ),
                           GestureDetector(
-                            onTap: () => viewModel.changePostCategory(HomePostEnums.popular),
+                            onTap: () => viewModel.changeJobOrderCategory(HomeJobsorderEnums.popular),
                             child: Text(
                               "En Çok Başvurulan",
                               style: ITheme.of(context).bodyMedium.copyWith(
                                     fontFamily: 'Lexend',
-                                    color: viewModel.selectedPostCatgry == HomePostEnums.popular
+                                    color: viewModel.selectedJobOrder == HomeJobsorderEnums.popular
                                         ? ITheme.of(context).primaryText
                                         : ITheme.of(context).secondaryText,
                                   ),
@@ -171,7 +192,7 @@ class HomeView extends StatelessWidget {
                       child: Observer(builder: (_) {
                         return viewModel.isloading
                             ? const Center(child: CircularProgressIndicator())
-                            : viewModel.joblist?.isEmpty ?? false
+                            : viewModel.joblist.isEmpty
                                 ? Center(
                                     child: Text(
                                       "Gösterilecek hiç ilan yok",
@@ -180,21 +201,31 @@ class HomeView extends StatelessWidget {
                                     ),
                                   )
                                 : ListView.builder(
-                                    itemCount: viewModel.selectedPostCatgry == HomePostEnums.highPaid
-                                        ? viewModel.joblist?.length
-                                        : viewModel.selectedPostCatgry == HomePostEnums.newest
-                                            ? viewModel.joblist?.length
-                                            : viewModel.joblist?.length,
+                                    itemCount: viewModel.selectedJobOrder == HomeJobsorderEnums.highPaid
+                                        ? viewModel.joblist.length
+                                        : viewModel.selectedJobOrder == HomeJobsorderEnums.newest
+                                            ? viewModel.joblist.length
+                                            : viewModel.joblist.length,
                                     padding: const EdgeInsets.only(bottom: 120),
                                     scrollDirection: Axis.vertical,
                                     itemBuilder: (context, index) {
                                       return MyJobsWidget(
-                                          title: viewModel.joblist?[index].title ?? "",
-                                          description: viewModel.joblist?[index].description ?? "",
-                                          application_count:
-                                              viewModel.joblist?[index].application_count.toString() ?? "",
-                                          salary: viewModel.joblist?[index].salary.toString() ?? "",
-                                          applyJob: () {});
+                                        date: viewModel.tarihiDuzenle(viewModel.joblist[index].created_date ?? ''),
+                                        companyId: viewModel.joblist[index].company_id.toString(),
+                                        title: viewModel.joblist[index].title ?? "",
+                                        description: viewModel.joblist[index].description ?? "",
+                                        application_count: viewModel.joblist[index].application_count.toString(),
+                                        salary: viewModel.joblist[index].salary.toString(),
+                                        isApplied: viewModel.joblist[index].is_applied ?? true,
+                                        buttonLabel: 'Basvur',
+                                        applyJob: (viewModel.joblist[index].is_applied ?? true)
+                                            ? () {
+                                                viewModel.showSnackAlreadyApplied();
+                                              }
+                                            : () async {
+                                                viewModel.applyJob(index);
+                                              },
+                                      );
                                     },
                                   );
                       }),

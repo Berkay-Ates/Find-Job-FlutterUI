@@ -29,27 +29,30 @@ class JobResult {
   String? description;
   int? application_count;
   int? salary;
-  String? created_data;
+  String? created_date;
   String? job_id;
-  String? company_id;
+  int? company_id;
+  bool? is_applied;
 
   JobResult(
       {this.title,
       this.description,
       this.application_count,
       this.salary,
-      this.created_data,
+      this.created_date,
       this.job_id,
-      this.company_id});
+      this.company_id,
+      this.is_applied});
 
   JobResult.fromJson(Map<String, dynamic> json) {
     title = json['title'];
     description = json['description'];
     application_count = json['application_count'];
     salary = json['salary'];
-    created_data = json['created_data'];
+    created_date = json['created_date'];
     job_id = json['job_id'];
     company_id = json['company_id'];
+    is_applied = false;
   }
 
   Map<String, dynamic> toJson() {
@@ -58,9 +61,10 @@ class JobResult {
     data['description'] = description;
     data['application_count'] = application_count;
     data['salary'] = salary;
-    data['created_data'] = created_data;
+    data['created_date'] = created_date;
     data['job_id'] = job_id;
     data['company_id'] = company_id;
+    data['is_applied'] = is_applied;
     return data;
   }
 }

@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:placars_savt/core/base/view/base_view.dart';
+import 'package:placars_savt/core/components/applied_job_widget.dart';
 import 'package:placars_savt/core/extension/device_properties/device_properties.dart';
 import 'package:placars_savt/feature/home/job_applications_page/view_model/my_jobs_view_model.dart';
 
@@ -38,7 +39,7 @@ class CarsView extends StatelessWidget {
               body: Observer(builder: (_) {
                 return viewModel.isloading
                     ? const Center(child: CircularProgressIndicator())
-                    : viewModel.jobLists.isEmpty
+                    : viewModel.appliedJobLists.isEmpty
                         ? Center(
                             child: SizedBox(
                             width: (context.deviceWidth ?? 400) * 0.70,
@@ -50,9 +51,18 @@ class CarsView extends StatelessWidget {
                           ))
                         : ListView.builder(
                             itemBuilder: (context, index) {
-                              return const Text("data");
+                              return AppliedJobWidget(
+                                  applicationId: viewModel.appliedJobLists[index].jobApplicationId ?? "",
+                                  applicationDate: viewModel.appliedJobLists[index].applicationDate ?? "",
+                                  companyId: viewModel.appliedJobLists[index].companyId.toString(),
+                                  jobId: viewModel.appliedJobLists[index].jobId ?? " ",
+                                  userId: viewModel.appliedJobLists[index].userId ?? "",
+                                  buttonLabel: "Basvuru Sil",
+                                  deleteJobApplication: () {
+                                    viewModel.deleteJobApplication(index);
+                                  });
                             },
-                            itemCount: viewModel.jobLists.length,
+                            itemCount: viewModel.appliedJobLists.length,
                             padding: const EdgeInsetsDirectional.fromSTEB(0.0, 3.0, 0.0, 120.0),
                             primary: false,
                             shrinkWrap: true,

@@ -28,9 +28,6 @@ dependencies:
   connectivity_plus: ^3.0.6
   dio: ^5.1.1
 
-  #Language
-  localization: ^2.1.0
-
   #core
   json_annotation: ^4.8.1
   equatable: ^2.0.5

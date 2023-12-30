@@ -105,8 +105,8 @@ abstract class _CompanyAddViewModelBase with Store, BaseViewModel {
   @action
   Future addCompany() async {
     if (formKey.currentState?.validate() ?? false) {
-      CompanyModel company = CompanyModel(companyNameController?.text, companyLocationController?.text, companyUrl,
-          companyFieldController?.text, "Null");
+      CompanyModel company =
+          CompanyModel(companyNameController?.text, 1, companyUrl, companyFieldController?.text, "Null");
       final response = await appService?.dio.post(BackendURLS.CREATE_COMPANY, data: company.toJson());
       if (response?.statusCode == HttpStatus.created) {
         showSnackS();

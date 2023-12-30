@@ -25,6 +25,8 @@ class BackendURLS {
   static const String CREATE_JOB_APPLICATION = '$BASE_URL/createJobApplication/';
   static const String GET_COMPANY_JOBS = '$BASE_URL/getCompanyJobs/';
   static const String GET_ALL_JOB_APPLICATIONS = '$BASE_URL/getAllJobApplications/';
+  static const String DELETE_JOB_APPLICATION = '$BASE_URL/deleteJobApplication/';
+  static const String GET_ORDERED_JOBS = '$BASE_URL/getOrderedJobs/';
 
   static const String IMAGE_UPLOAD = "https://firebasestorage.googleapis.com/v0/b/findjob-5468d.appspot.com/o/";
 

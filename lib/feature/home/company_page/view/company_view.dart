@@ -90,6 +90,8 @@ class CompanyView extends StatelessWidget {
                                     itemCount: viewModel.companiesList?.length,
                                     itemBuilder: ((context, index) {
                                       return CompanyWidget(
+                                          jobCount: viewModel.companiesList?[index].jobCount ?? 0,
+                                          companyOrder: viewModel.companiesList?[index].companyId.toString() ?? " ",
                                           company_img_url: viewModel.companiesList?[index].companyImgUrl ?? " ",
                                           name: viewModel.companiesList?[index].name ?? "",
                                           field: viewModel.companiesList?[index].field ?? "");

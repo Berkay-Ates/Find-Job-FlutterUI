@@ -26,12 +26,13 @@ class Companies {
 
 class CompanyResult {
   String? name;
-  String? companyId;
+  int? companyId;
   String? createdDate;
   String? field;
   String? companyImgUrl;
+  int? jobCount;
 
-  CompanyResult({this.name, this.companyId, this.createdDate, this.field, this.companyImgUrl});
+  CompanyResult({this.name, this.companyId, this.createdDate, this.field, this.companyImgUrl, this.jobCount});
 
   CompanyResult.fromJson(Map<String, dynamic> json) {
     name = json['name'];
@@ -39,6 +40,7 @@ class CompanyResult {
     createdDate = json['created_date'];
     field = json['field'];
     companyImgUrl = json['company_img_url'];
+    jobCount = json['job_count'];
   }
 
   Map<String, dynamic> toJson() {
@@ -48,6 +50,8 @@ class CompanyResult {
     data['created_date'] = createdDate;
     data['field'] = field;
     data['company_img_url'] = companyImgUrl;
+    data['job_count'] = jobCount;
+
     return data;
   }
 }

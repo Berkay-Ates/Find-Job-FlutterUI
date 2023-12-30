@@ -1,5 +1,10 @@
+import 'dart:developer';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
+import 'package:placars_savt/feature/home/home_page/model/job_applications_model.dart';
+import 'package:placars_savt/feature/home/home_page/model/job_apply_model.dart';
 import 'package:placars_savt/product/backend/backend_endpoints.dart';
 
 import '../../../../core/base/view_model/base_view_model.dart';
@@ -16,18 +21,26 @@ part 'home_view_model.g.dart';
 class HomeViewModel = _HomeViewModelBase with _$HomeViewModel;
 
 abstract class _HomeViewModelBase with Store, BaseViewModel {
+  FocusNode? focusNode;
+
   TextEditingController? textController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final unfocusNode = FocusNode();
 
   @observable
-  HomePostEnums selectedPostCatgry = HomePostEnums.highPaid;
+  HomeJobsorderEnums selectedJobOrder = HomeJobsorderEnums.none;
 
   IHivecacheManager<UserHiveModel>? userHiveCacheManager;
   UserHiveModel? userHiveModel;
 
   @observable
-  List<JobResult>? joblist = [];
+  List<JobResult> joblist = [];
+
+  @observable
+  List<JobResult> companyJobList = [];
+
+  @observable
+  List<JobApplication> jobApplicationList = [];
 
   @observable
   bool isloading = false;
@@ -43,7 +56,8 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
   @override
   void init() {
     textController ??= TextEditingController();
-    getJobs();
+    focusNode ??= FocusNode();
+
     initHive();
   }
 
@@ -55,38 +69,158 @@ abstract class _HomeViewModelBase with Store, BaseViewModel {
     userHiveCacheManager = UserHiveCacheManager(CacheEnumKeys.USERHIVEBOXKEY.name);
     await userHiveCacheManager?.init();
     userHiveModel = userHiveCacheManager?.getItem(CacheEnumKeys.USERHIVEKEY.name);
+    getJobs();
   }
 
   @action
-  void changePostCategory(HomePostEnums value) {
-    if (value != selectedPostCatgry) {
-      selectedPostCatgry = value;
+  void changeJobOrderCategory(HomeJobsorderEnums value) {
+    if (value != selectedJobOrder) {
+      selectedJobOrder = value;
     }
+    getOrderedJobs();
   }
 
   @action
-  String tarihiDuzenle(String tarih) {
-    DateTime dt = DateTime.parse(tarih);
-    String gun = dt.day.toString().padLeft(2, '0');
-    String ay = dt.month.toString().padLeft(2, '0');
-    String yil = dt.year.toString();
-    return "$gun.$ay.$yil";
+  String tarihiDuzenle(String inputDateTime) {
+    // Gelen tarih ve saat formatını parse et
+    DateTime dateTime;
+    // Tarihi ve saati ayrı ayrı al
+    try {
+      dateTime = DateTime.parse(inputDateTime);
+    } on Exception {
+      inspect(inputDateTime);
+      return inputDateTime;
+    }
+    int day = dateTime.day;
+    int month = dateTime.month;
+    int year = dateTime.year;
+    int hour = dateTime.hour;
+    int minute = dateTime.minute;
+
+    // İstediğimiz formatta bir string oluştur
+    String formattedDateTime =
+        '$day-${month < 10 ? '0$month' : month}-$year ${hour < 10 ? '0$hour' : hour}:${minute < 10 ? '0$minute' : minute}';
+
+    return formattedDateTime;
   }
 
+  @action
+  Future<void> getOrderedJobs() async {
+    changeLoading();
+    try {
+      final appliedJobs =
+          await appService?.dio.get("${BackendURLS.GET_USER_JOB_APPLICATION}${userHiveModel?.person_id}/");
+      final jobData = appliedJobs?.data;
+      if (jobData is Map<String, dynamic>) {
+        jobApplicationList = JobApplications.fromJson(jobData).result ?? [];
+      }
+      final response = await appService?.dio.get("${BackendURLS.GET_ORDERED_JOBS}${selectedJobOrder.enumValue}");
+      final data = response?.data;
+
+      if (data is Map<String, dynamic>) {
+        joblist = Jobs.fromJson(data).result ?? [];
+
+        for (var application in jobApplicationList) {
+          for (var job in joblist) {
+            if (application.jobId == job.job_id) {
+              job.is_applied = true;
+            }
+          }
+        }
+      }
+    } catch (e) {
+      showSnackSParam(e.toString());
+    }
+    changeLoading();
+    showSnackSParam(
+        "SQL Fonksiyonu ile veriler cekildigi icin bilgiler farkli formatta donmektedir. Bu bilgiler API tarafinda her ne kadar duzeltilse de ekranda duzgun gozukmeyebilir");
+  }
+
+  @action
+  Future<void> getCompanyJobs() async {
+    changeLoading();
+    try {
+      final response = await appService?.dio.get("${BackendURLS.GET_COMPANY_JOBS}${textController?.text}");
+      final data = response?.data;
+
+      if (data is Map<String, dynamic>) {
+        companyJobList = Jobs.fromJson(data).result ?? [];
+      }
+    } catch (e) {
+      showSnackSParam(e.toString());
+    }
+    changeLoading();
+  }
+
+  @action
   Future<void> getJobs() async {
     changeLoading();
     try {
+      final appliedJobs =
+          await appService?.dio.get("${BackendURLS.GET_USER_JOB_APPLICATION}${userHiveModel?.person_id}/");
+      final jobData = appliedJobs?.data;
+      if (jobData is Map<String, dynamic>) {
+        jobApplicationList = JobApplications.fromJson(jobData).result ?? [];
+      }
       final response = await appService?.dio.get(BackendURLS.GET_ALL_JOBS);
       final data = response?.data;
 
       if (data is Map<String, dynamic>) {
-        joblist = Jobs.fromJson(data).result;
+        joblist = Jobs.fromJson(data).result ?? [];
+
+        for (var application in jobApplicationList) {
+          for (var job in joblist) {
+            if (application.jobId == job.job_id) {
+              job.is_applied = true;
+            }
+          }
+        }
       }
-      print(response?.data);
     } catch (e) {
-      showSnackS();
+      showSnackSParam(e.toString());
     }
     changeLoading();
+  }
+
+  @action
+  Future<void> applyJob(int index) async {
+    final userId = userHiveModel?.person_id;
+    final jobId = joblist[index].job_id;
+    final companyId = joblist[index].company_id;
+    JobApplyModel jobApplyModel = JobApplyModel(companyId: companyId, jobId: jobId.toString(), userId: userId);
+
+    try {
+      final response = await appService?.dio.post(BackendURLS.CREATE_JOB_APPLICATION, data: jobApplyModel.toJson());
+
+      if (response?.statusCode == HttpStatus.created) {
+        getJobs();
+      }
+    } catch (e) {
+      showSnackSParam(e.toString());
+      inspect(e);
+    }
+
+    inspect(userId);
+  }
+
+  void showSnackAlreadyApplied() {
+    ScaffoldMessenger.of(baseContext).showSnackBar(SnackBar(
+      content: const Text(
+        "Bu ise zaten basvuru yapildi!!",
+        textAlign: TextAlign.center,
+      ),
+      backgroundColor: Theme.of(baseContext).colorScheme.error,
+    ));
+  }
+
+  void showSnackSParam(String message) {
+    ScaffoldMessenger.of(baseContext).showSnackBar(SnackBar(
+      content: Text(
+        message,
+        textAlign: TextAlign.center,
+      ),
+      backgroundColor: Theme.of(baseContext).colorScheme.error,
+    ));
   }
 
   void showSnackS() {

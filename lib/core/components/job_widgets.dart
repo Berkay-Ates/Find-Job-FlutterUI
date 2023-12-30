@@ -3,20 +3,28 @@ import 'package:flutter/material.dart';
 import '../init/theme/itheme/iTheme.dart';
 
 class MyJobsWidget extends StatelessWidget {
-  const MyJobsWidget({
-    Key? key,
-    required this.title,
-    required this.description,
-    required this.application_count,
-    required this.salary,
-    required this.applyJob,
-  }) : super(key: key);
+  const MyJobsWidget(
+      {Key? key,
+      required this.title,
+      required this.description,
+      required this.date,
+      required this.application_count,
+      required this.salary,
+      required this.applyJob,
+      required this.isApplied,
+      required this.buttonLabel,
+      required this.companyId})
+      : super(key: key);
 
   final String title;
+  final String date;
   final String description;
   final String application_count;
   final String salary;
   final Function applyJob;
+  final bool isApplied;
+  final String buttonLabel;
+  final String companyId;
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +49,41 @@ class MyJobsWidget extends StatelessWidget {
                             fontFamily: 'Lexend',
                             color: ITheme.of(context).primary,
                             fontSize: 20.0,
+                            fontWeight: FontWeight.w600,
+                          ),
+                    ),
+                  ),
+                  const Spacer(),
+                  Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
+                    child: Text(
+                      date,
+                      textAlign: TextAlign.start,
+                      style: ITheme.of(context).bodySmall.copyWith(
+                            fontFamily: 'Lexend',
+                            color: ITheme.of(context).primary,
+                            fontSize: 14.0,
+                            fontWeight: FontWeight.w600,
+                          ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(12.0, 4.0, 12.0, 4.0),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
+                    child: SelectableText(
+                      "company id:$companyId",
+                      textAlign: TextAlign.start,
+                      style: ITheme.of(context).bodySmall.copyWith(
+                            fontFamily: 'Lexend',
+                            color: ITheme.of(context).primary,
+                            fontSize: 14.0,
                             fontWeight: FontWeight.w600,
                           ),
                     ),
@@ -142,11 +185,11 @@ class MyJobsWidget extends StatelessWidget {
                   ),
                   const Spacer(),
                   FilledButton(
-                    onPressed: applyJob(),
+                    onPressed: isApplied ? null : () => applyJob(),
                     child: Text(
-                      "Başvur",
+                      buttonLabel,
                       style: ITheme.of(context).bodySmall.copyWith(
-                            color: ITheme.of(context).primary,
+                            color: ITheme.of(context).customColor4,
                             fontSize: 12.0,
                           ),
                     ),

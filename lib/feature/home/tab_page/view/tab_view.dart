@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
-import 'package:placars_savt/feature/home/tab_page/view_model.dart/tab_view_model.dart';
+import 'package:placars_savt/feature/home/tab_page/view_model/tab_view_model.dart';
 
 import '../../../../core/base/view/base_view.dart';
 import '../../../../core/components/floating_navigation_bar.dart';
@@ -117,7 +117,7 @@ class _FindJobApiTabViewState extends State<FindJobApiTabView> with TickerProvid
                           size: 24.0,
                         ),
                         Text(
-                          'Şireket',
+                          'Şirket',
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             color: viewModel.currentIndex == TabEnums.messages.index

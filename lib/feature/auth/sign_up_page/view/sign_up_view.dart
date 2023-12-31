@@ -277,7 +277,7 @@ class SignUpView extends StatelessWidget {
                                                 ),
                                                 style: ITheme.of(context).bodyMedium,
                                                 validator: (value) {
-                                                  if ((value?.length ?? 0) < 5) {
+                                                  if ((value?.length ?? 0) < 3) {
                                                     return 'Gecersiz Cinsiyet Bilgisi Girdiniz';
                                                   }
                                                   return null;
@@ -343,7 +343,7 @@ class SignUpView extends StatelessWidget {
                                                   ),
                                                   style: ITheme.of(context).bodyMedium,
                                                   validator: (value) =>
-                                                      ((value?.length ?? 0) > 6) ? null : 'Geçersiz Şifre Girdiniz',
+                                                      ((value?.length ?? 0) > 3) ? null : 'Geçersiz Şifre Girdiniz',
                                                 );
                                               }),
                                             ),
@@ -417,7 +417,7 @@ class SignUpView extends StatelessWidget {
                                             Padding(
                                               padding: const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 24.0),
                                               child: Observer(builder: (_) {
-                                                return PlacarsButtonWidget(
+                                                return FindJobButtonWidget(
                                                   onPressed: () async {
                                                     await viewModel.signUpUser();
                                                   },

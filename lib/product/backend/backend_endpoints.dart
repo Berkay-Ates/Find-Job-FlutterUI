@@ -12,6 +12,7 @@ class BackendURLS {
   static const String GET_ALL_USERS_POST = '$BASE_URL/getAllUserPosts/';
   static const String GET_ALL_USERS = '$BASE_URL/getAllUsers/';
   static const String GET_USER_JOB_APPLICATION = '$BASE_URL/getUserJobApplications/';
+  static const String UPDATE_PROFILE = '$BASE_URL/updateAccountInfo/';
 
   static const String CREATE_COMPANY = '$BASE_URL/createCompany/';
   static const String CREATE_COMPANY_POST = '$BASE_URL/createCompanyPost/';

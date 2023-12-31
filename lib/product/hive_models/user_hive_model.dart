@@ -26,6 +26,10 @@ class UserHiveModel {
   final bool? is_active;
   @HiveField(9)
   final String? user_password;
+  @HiveField(10)
+  final String? user_school;
+  @HiveField(11)
+  final int? user_experience;
 
   UserHiveModel(
     this.id,
@@ -38,5 +42,7 @@ class UserHiveModel {
     this.gender,
     this.is_active,
     this.user_password,
+    this.user_school,
+    this.user_experience,
   );
 }

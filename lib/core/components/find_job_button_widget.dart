@@ -44,8 +44,8 @@ class FindJobButtonOptions {
   final double? hoverElevation;
 }
 
-class PlacarsButtonWidget extends StatefulWidget {
-  const PlacarsButtonWidget({
+class FindJobButtonWidget extends StatefulWidget {
+  const FindJobButtonWidget({
     Key? key,
     required this.text,
     required this.onPressed,
@@ -63,10 +63,10 @@ class PlacarsButtonWidget extends StatefulWidget {
   final bool showLoadingIndicator;
 
   @override
-  State<PlacarsButtonWidget> createState() => _PlacarsButtonWidgetState();
+  State<FindJobButtonWidget> createState() => _FindJobButtonWidgetState();
 }
 
-class _PlacarsButtonWidgetState extends State<PlacarsButtonWidget> {
+class _FindJobButtonWidgetState extends State<FindJobButtonWidget> {
   bool loading = false;
 
   @override

@@ -89,7 +89,7 @@ class EmailVerifyView extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Observer(builder: (_) {
-                              return PlacarsButtonWidget(
+                              return FindJobButtonWidget(
                                 onPressed: () {
                                   viewModel.navigateSignInPage();
                                 },
@@ -113,7 +113,7 @@ class EmailVerifyView extends StatelessWidget {
                               );
                             }),
                             Observer(builder: (_) {
-                              return PlacarsButtonWidget(
+                              return FindJobButtonWidget(
                                 onPressed: () async {
                                   await viewModel.isMailVerified();
                                 },

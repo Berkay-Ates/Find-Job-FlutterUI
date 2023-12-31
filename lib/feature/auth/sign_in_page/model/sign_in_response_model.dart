@@ -13,6 +13,8 @@ class SignInModelResponse {
   bool? is_active;
   String? user_password;
   String? profile_img_url;
+  final int? experience;
+  final String? school;
 
   SignInModelResponse(
     this.name,
@@ -24,6 +26,8 @@ class SignInModelResponse {
     this.is_active,
     this.user_password,
     this.profile_img_url,
+    this.experience,
+    this.school,
   );
 
   factory SignInModelResponse.fromJson(Map<String, dynamic> json) {

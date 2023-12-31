@@ -1,10 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:json_annotation/json_annotation.dart';
 
-part 'sign_up_model.g.dart';
+part 'profile_model.g.dart';
 
 @JsonSerializable()
-class SignUpModel {
+class ProfileModel {
   final String? name;
   final String? surname;
   final String? mail;
@@ -17,7 +17,7 @@ class SignUpModel {
   final int? experience;
   final String? school;
 
-  SignUpModel({
+  ProfileModel({
     this.name,
     this.surname,
     this.mail,
@@ -31,11 +31,11 @@ class SignUpModel {
     this.school,
   });
 
-  factory SignUpModel.fromJson(Map<String, dynamic> json) {
-    return _$SignUpModelFromJson(json);
+  factory ProfileModel.fromJson(Map<String, dynamic> json) {
+    return _$ProfileModelFromJson(json);
   }
 
   Map<String, dynamic> toJson() {
-    return _$SignUpModelToJson(this);
+    return _$ProfileModelToJson(this);
   }
 }

@@ -1,28 +1,26 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'sign_in_response_model.dart';
+part of 'profile_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-SignInModelResponse _$SignInModelResponseFromJson(Map<String, dynamic> json) =>
-    SignInModelResponse(
-      json['name'] as String?,
-      json['surname'] as String?,
-      json['mail'] as String?,
-      json['person_id'] as String?,
-      json['created_date'] as String?,
-      json['gender'] as String?,
-      json['is_active'] as bool?,
-      json['user_password'] as String?,
-      json['profile_img_url'] as String?,
-      json['experience'] as int?,
-      json['school'] as String?,
+ProfileModel _$ProfileModelFromJson(Map<String, dynamic> json) => ProfileModel(
+      name: json['name'] as String?,
+      surname: json['surname'] as String?,
+      mail: json['mail'] as String?,
+      person_id: json['person_id'] as String?,
+      created_date: json['created_date'] as String?,
+      gender: json['gender'] as String?,
+      is_active: json['is_active'] as bool?,
+      user_password: json['user_password'] as String?,
+      profile_img_url: json['profile_img_url'] as String?,
+      experience: json['experience'] as int?,
+      school: json['school'] as String?,
     );
 
-Map<String, dynamic> _$SignInModelResponseToJson(
-        SignInModelResponse instance) =>
+Map<String, dynamic> _$ProfileModelToJson(ProfileModel instance) =>
     <String, dynamic>{
       'name': instance.name,
       'surname': instance.surname,

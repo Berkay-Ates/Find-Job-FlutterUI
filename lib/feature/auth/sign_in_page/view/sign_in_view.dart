@@ -211,7 +211,7 @@ class SignInView extends StatelessWidget {
                                       children: [
                                         Padding(
                                           padding: const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 24.0),
-                                          child: PlacarsButtonWidget(
+                                          child: FindJobButtonWidget(
                                             onPressed: () async {
                                               viewModel.navigateForgotPassPage();
                                             },
@@ -233,7 +233,7 @@ class SignInView extends StatelessWidget {
                                           ),
                                         ),
                                         Observer(builder: (_) {
-                                          return PlacarsButtonWidget(
+                                          return FindJobButtonWidget(
                                             onPressed: () async {
                                               await viewModel.signInUser();
                                             },

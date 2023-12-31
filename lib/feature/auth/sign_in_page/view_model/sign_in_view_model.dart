@@ -118,6 +118,8 @@ abstract class _SignInViewModelBase with Store, BaseViewModel {
           responseModel.gender,
           responseModel.is_active,
           responseModel.user_password,
+          responseModel.school,
+          responseModel.experience,
         );
         await userHiveCacheManager?.putItem(CacheEnumKeys.USERHIVEKEY.name, userHiveModel);
         if ((responseModel.is_active ?? false) == true && (responseModel.mail?.isNotEmpty ?? false)) {

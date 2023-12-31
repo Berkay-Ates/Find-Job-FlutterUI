@@ -99,10 +99,10 @@ abstract class _JobAddViewModelBase with Store, BaseViewModel {
     ));
   }
 
-  void showSnackSError() {
+  void showSnackSError(String error) {
     ScaffoldMessenger.of(baseContext).showSnackBar(SnackBar(
-      content: const Text(
-        "Yeni iş ekleme işlemi başarılamadı, sirket ismini kontrol ederek tekrar dene",
+      content: Text(
+        error,
         textAlign: TextAlign.center,
       ),
       backgroundColor: Theme.of(baseContext).colorScheme.error,

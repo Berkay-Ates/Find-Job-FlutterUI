@@ -127,6 +127,8 @@ abstract class _SignUpViewModelBase with Store, BaseViewModel {
               signUpModel.gender,
               signUpModel.is_active,
               signUpModel.user_password,
+              "NO_SCHOOL",
+              0,
             );
 
             await userHiveCacheManager?.putItem(CacheEnumKeys.USERHIVEKEY.name, userHiveModel);
@@ -146,6 +148,8 @@ abstract class _SignUpViewModelBase with Store, BaseViewModel {
               signUpModel.gender,
               signUpModel.is_active,
               signUpModel.user_password,
+              "NO_SCHOOL",
+              0,
             );
             await userHiveCacheManager?.putItem(CacheEnumKeys.USERHIVEKEY.name, userHiveModel);
             navigateEmailSendPage();
@@ -153,10 +157,10 @@ abstract class _SignUpViewModelBase with Store, BaseViewModel {
           //
         } else if (response.statusCode == HttpStatus.conflict) {
           showSnackS('Bu hesap var ve halihazirda biri tarafindan kullaniliyor ');
+        } else if (response.statusCode == HttpStatus.badGateway) {
+          showSnackS('Trigger Tarafindan kisa bir password sectiginiz tespit edildi.');
         } else {
-          showSnackS(
-              'Beklenmedik bir hata olustu ya network sorunlu yada gecersiz veriler girdiniz sonra tekrar deneyiniz.');
-          // there is an error
+          showSnackS(e.toString());
         }
       }
     } catch (e) {

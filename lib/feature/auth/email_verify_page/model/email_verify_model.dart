@@ -34,8 +34,20 @@ class Result {
   String? gender;
   String? user_password;
   String? profile_img_url;
+  String? school;
+  int? experience;
 
-  Result({this.name, this.surname, this.mail, this.person_id, this.created_date, this.is_active, this.gender});
+  Result({
+    this.name,
+    this.surname,
+    this.mail,
+    this.person_id,
+    this.created_date,
+    this.is_active,
+    this.gender,
+    this.school,
+    this.experience,
+  });
 
   Result.fromJson(Map<String, dynamic> json) {
     name = json['name'];
@@ -47,6 +59,8 @@ class Result {
     gender = json['gender'];
     user_password = json['user_password'];
     profile_img_url = json['profile_img_url'];
+    experience = json['experience'];
+    school = json['school'];
   }
 
   Map<String, dynamic> toJson() {
@@ -60,6 +74,8 @@ class Result {
     data['gender'] = gender;
     data['user_password'] = user_password;
     data['profile_img_url'] = profile_img_url;
+    data['experience'] = experience;
+    data['school'] = school;
     return data;
   }
 }

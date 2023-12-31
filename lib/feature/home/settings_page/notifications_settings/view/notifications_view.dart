@@ -75,7 +75,7 @@ class NotificationsSettingView extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
                     child: Observer(builder: (_) {
-                      return PlacarsButtonWidget(
+                      return FindJobButtonWidget(
                         onPressed: viewModel.isLoading
                             ? null
                             : () async {

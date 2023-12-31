@@ -40,7 +40,7 @@ class CarDeleteWidget extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
-              child: PlacarsButtonWidget(
+              child: FindJobButtonWidget(
                 onPressed: () => deleteCar(),
                 text: "Arabayı sil",
                 options: FindJobButtonOptions(
@@ -65,7 +65,7 @@ class CarDeleteWidget extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
-              child: PlacarsButtonWidget(
+              child: FindJobButtonWidget(
                 onPressed: () async {
                   Navigator.pop(context);
                 },

@@ -253,13 +253,13 @@ class JobAddView extends StatelessWidget {
                         ),
                         Padding(
                           padding: const EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 60.0),
-                          child: PlacarsButtonWidget(
+                          child: FindJobButtonWidget(
                             onPressed: () async {
                               try {
                                 await viewModel.addJob();
                               } catch (e) {
                                 inspect(e);
-                                viewModel.showSnackSError();
+                                viewModel.showSnackSError(e.toString());
                               }
                             },
                             text: "İlanı Kaydet",

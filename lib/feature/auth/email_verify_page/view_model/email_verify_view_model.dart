@@ -72,8 +72,10 @@ abstract class _EmailVerifyViewModelBase with Store, BaseViewModel {
       if (mail?.isNotEmpty ?? false) {
         final response = await appService?.dio.get("${BackendURLS.GET_ONE_USER_INFOR}$mail/");
         final data = response?.data;
+        inspect(data);
         if (data is Map<String, dynamic>) {
           final emailCheckRes = EmailVerifyModel.fromJson(data);
+
           if (emailCheckRes.result?[0].is_active ?? false) {
             UserHiveModel userHiveModel = UserHiveModel(
               0,
@@ -86,6 +88,8 @@ abstract class _EmailVerifyViewModelBase with Store, BaseViewModel {
               emailCheckRes.result?[0].gender,
               emailCheckRes.result?[0].is_active,
               emailCheckRes.result?[0].user_password,
+              emailCheckRes.result?[0].school,
+              emailCheckRes.result?[0].experience,
             );
             await userHiveCacheManager?.putItem(CacheEnumKeys.USERHIVEKEY.name, userHiveModel);
             navigateHomePage();

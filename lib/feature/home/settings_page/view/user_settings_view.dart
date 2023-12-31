@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:placars_savt/feature/home/settings_page/profile_settings/profile_settings_view/profile_settings_view.dart';
 import '../../../../core/base/view/base_view.dart';
 import '../../../../core/components/exit_widget.dart';
 import '../view_model/user_settings_view_model.dart';
@@ -90,7 +91,14 @@ class UserSettingsView extends StatelessWidget {
                                         Padding(
                                           padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
                                           child: Text(
-                                            viewModel.userHiveModel?.name ?? "Kullanıcı kullanıcı adı",
+                                            "Deneyim yili: ${viewModel.userHiveModel?.user_experience.toString()}",
+                                            style: ITheme.of(context).bodySmall,
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsetsDirectional.fromSTEB(0.0, 4.0, 0.0, 0.0),
+                                          child: Text(
+                                            "Okul: ${viewModel.userHiveModel?.user_school}",
                                             style: ITheme.of(context).bodySmall,
                                           ),
                                         ),
@@ -264,10 +272,17 @@ class UserSettingsView extends StatelessWidget {
                                   Expanded(
                                     child: Align(
                                       alignment: const AlignmentDirectional(0.9, 0.0),
-                                      child: Icon(
-                                        Icons.arrow_forward_ios,
-                                        color: ITheme.of(context).secondaryText,
-                                        size: 18.0,
+                                      child: InkWell(
+                                        onTapDown: (details) async {
+                                          await Navigator.push(context,
+                                              MaterialPageRoute(builder: ((context) => const ProfileSettingsView())));
+                                          viewModel.initHive();
+                                        },
+                                        child: Icon(
+                                          Icons.arrow_forward_ios,
+                                          color: ITheme.of(context).secondaryText,
+                                          size: 18.0,
+                                        ),
                                       ),
                                     ),
                                   ),
